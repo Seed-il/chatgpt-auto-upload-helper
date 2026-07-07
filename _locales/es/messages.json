@@ -1,0 +1,280 @@
+{
+  "extName": {
+    "message": "ChatGPT Auto Upload Helper"
+  },
+  "extDescription": {
+    "message": "Sube imágenes de referencia e inserta tarjetas de prompt en ChatGPT."
+  },
+  "sidepanelTitle": {
+    "message": "ChatGPT Auto Upload Helper"
+  },
+  "sidepanelDesc": {
+    "message": "Inserta rápidamente tarjetas de prompt en el cuadro de entrada de ChatGPT manteniendo las imágenes de referencia y las reglas de relación de aspecto."
+  },
+  "refImagesTitle": {
+    "message": "1. Imágenes de referencia"
+  },
+  "selectImages": {
+    "message": "Seleccionar imágenes"
+  },
+  "imageTypesHint": {
+    "message": "Fichas de personajes · Fichas de fondo · Fichas de comida, etc."
+  },
+  "uploadImagesBtn": {
+    "message": "Adjuntar imágenes de referencia a ChatGPT"
+  },
+  "clearImagesBtn": {
+    "message": "Limpiar imágenes"
+  },
+  "refImagesHint": {
+    "message": "Los archivos adjuntos solo se mantienen en la conversación actual de ChatGPT. Vuelve a adjuntarlos después de abrir una nueva conversación o actualizar, si es necesario."
+  },
+  "generationSettingsTitle": {
+    "message": "2. Ajustes fijos de generación"
+  },
+  "autoApplyBadge": {
+    "message": "Aplicar auto"
+  },
+  "aspectRatioLabel": {
+    "message": "Relación de aspecto"
+  },
+  "aspectRatioNone": {
+    "message": "No añadir texto de relación"
+  },
+  "aspectRatio1_1": {
+    "message": "1:1 · Cuadrado"
+  },
+  "aspectRatio16_9": {
+    "message": "16:9 · Horizontal ancho"
+  },
+  "aspectRatio9_16": {
+    "message": "9:16 · Vertical"
+  },
+  "aspectRatio4_3": {
+    "message": "4:3 · Horizontal estándar"
+  },
+  "aspectRatio3_2": {
+    "message": "3:2 · Horizontal de foto"
+  },
+  "commonPromptLabel": {
+    "message": "Prompt común"
+  },
+  "optionalLabel": {
+    "message": "Opcional"
+  },
+  "commonPromptPlaceholder": {
+    "message": "Ej., Modern anime illustration, clean cel shading, cozy cinematic lighting."
+  },
+  "toggleRefRule": {
+    "message": "Indicar usar imágenes de referencia adjuntas como una ficha fija"
+  },
+  "toggleAspectRule": {
+    "message": "Añadir automáticamente el texto de relación seleccionado"
+  },
+  "toggleCommonPrompt": {
+    "message": "Añadir automáticamente el prompt común"
+  },
+  "aspectRatioHint": {
+    "message": "Elegir la relación 16:9 directamente en la interfaz de ChatGPT una vez también es más consistente."
+  },
+  "promptCardsTitle": {
+    "message": "3. Tarjetas de prompt"
+  },
+  "promptInputLabel": {
+    "message": "Pega un prompt por línea."
+  },
+  "promptInputPlaceholder": {
+    "message": "Scene 01: ...\nScene 02: ...\nScene 03: ..."
+  },
+  "buildCardsBtn": {
+    "message": "Generar tarjetas"
+  },
+  "savePromptsBtn": {
+    "message": "Guardar"
+  },
+  "clearPromptsBtn": {
+    "message": "Limpiar"
+  },
+  "insertModeLabel": {
+    "message": "Método de inserción"
+  },
+  "insertModeReplace": {
+    "message": "Sobrescribir"
+  },
+  "insertModeAppend": {
+    "message": "Añadir al final"
+  },
+  "statusDefault": {
+    "message": "Abre una pestaña de ChatGPT para empezar."
+  },
+  "promptCardTitle": {
+    "message": "Haz clic para insertar el prompt con ajustes fijos en el cuadro de entrada de ChatGPT."
+  },
+  "imageCountFormat": {
+    "message": "$1 imágenes",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "promptCountFormat": {
+    "message": "$1 tarjetas",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "previewRefRule": {
+    "message": "Regla de bloqueo de imagen de referencia"
+  },
+  "previewAspectRule": {
+    "message": "Relación $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "previewCommonPrompt": {
+    "message": "Prompt común"
+  },
+  "previewPrefix": {
+    "message": "Se aplica al hacer clic en la tarjeta: $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "previewNone": {
+    "message": "Solo pega el prompt original sin reglas adicionales al hacer clic en la tarjeta."
+  },
+  "statusClearImages": {
+    "message": "Lista de imágenes limpiada."
+  },
+  "statusClearPrompts": {
+    "message": "Prompts limpiados."
+  },
+  "statusBuildCards": {
+    "message": "Creadas $1 tarjetas de prompt.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSavePrompts": {
+    "message": "Prompts guardados en el navegador."
+  },
+  "statusApplyPrompt": {
+    "message": "Ajustes fijos aplicados al prompt #$1.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusNoImages": {
+    "message": "Por favor, selecciona primero las imágenes de referencia."
+  },
+  "statusPreparingImages": {
+    "message": "Preparando $1 imágenes...",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusUploadSuccess": {
+    "message": "Adjuntadas $1 imágenes a la entrada de ChatGPT. Úsalas como imágenes de referencia en esta conversación.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusNotChatGPT": {
+    "message": "La pestaña activa no es ChatGPT. Por favor, abre primero una conversación en chatgpt.com."
+  },
+  "statusNoEditor": {
+    "message": "No se pudo encontrar el campo de entrada de ChatGPT. Por favor, abre una página de conversación."
+  },
+  "statusNoFileInput": {
+    "message": "No se pudo encontrar el elemento de carga de archivos. La interfaz de ChatGPT puede haber cambiado."
+  },
+  "statusScriptInjectFailed": {
+    "message": "No se pudo conectar el script auxiliar de ChatGPT. Por favor, actualiza la pestaña de ChatGPT e inténtalo de nuevo."
+  },
+  "statusInvalidTab": {
+    "message": "No se pudo encontrar una pestaña de ChatGPT válida."
+  },
+  "statusChatGPTOnly": {
+    "message": "Solo se puede usar en una pestaña de ChatGPT."
+  },
+  "imageRemoveTitle": {
+    "message": "Eliminar $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "autoSendLabel": {
+    "message": "Enviar automáticamente tras insertar"
+  },
+  "runSequenceBtn": {
+    "message": "Ejecutar secuencia"
+  },
+  "cancelSequenceBtn": {
+    "message": "Cancelar secuencia"
+  },
+  "modalTitle": {
+    "message": "Introducir variables de plantilla"
+  },
+  "modalInsertBtn": {
+    "message": "Insertar y enviar"
+  },
+  "modalCancelBtn": {
+    "message": "Cancelar"
+  },
+  "statusSequenceRunning": {
+    "message": "Ejecutando secuencia ($1/$2)...",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "statusSequenceComplete": {
+    "message": "Secuencia completada con éxito."
+  },
+  "statusSequenceCancelled": {
+    "message": "Secuencia cancelada."
+  },
+  "loginSubtitle": {
+    "message": "Inicia sesión para desbloquear las funciones Pro y la generación secuencial."
+  },
+  "googleSignIn": {
+    "message": "Iniciar sesión con Google"
+  },
+  "debugBypass": {
+    "message": "Omitir y desbloquear Pro [Depurar]"
+  },
+  "signOutBtn": {
+    "message": "Cerrar sesión"
+  },
+  "upgradeBtn": {
+    "message": "Comprar Pro"
+  },
+  "proFeatureVariables": {
+    "message": "Las variables de plantilla son una función Pro. ¡Actualiza para desbloquearla!"
+  },
+  "proFeatureSequence": {
+    "message": "La generación secuencial es una función Pro. ¡Actualiza para desbloquearla!"
+  }
+}

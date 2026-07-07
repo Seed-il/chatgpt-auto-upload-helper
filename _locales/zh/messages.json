@@ -1,0 +1,276 @@
+{
+  "extName": {
+    "message": "ChatGPT Auto Upload Helper"
+  },
+  "extDescription": {
+    "message": "上传参考图片并将提示词卡片插入到 ChatGPT。"
+  },
+  "sidepanelTitle": {
+    "message": "ChatGPT Auto Upload Helper"
+  },
+  "sidepanelDesc": {
+    "message": "快速将提示词卡片插入到 ChatGPT 输入框中，同时保持参考图片和纵横比规则。"
+  },
+  "refImagesTitle": {
+    "message": "1. 参考图片"
+  },
+  "selectImages": {
+    "message": "选择图片"
+  },
+  "imageTypesHint": {
+    "message": "角色表 · 背景表 · 食物表等"
+  },
+  "uploadImagesBtn": {
+    "message": "将参考图片附加到 ChatGPT"
+  },
+  "clearImagesBtn": {
+    "message": "清除图片"
+  },
+  "refImagesHint": {
+    "message": "附件仅在当前的 ChatGPT 对话中保持。在打开新对话或刷新后，如果需要，请重新附加。"
+  },
+  "generationSettingsTitle": {
+    "message": "2. 固定生成设置"
+  },
+  "autoApplyBadge": {
+    "message": "自动应用"
+  },
+  "aspectRatioLabel": {
+    "message": "生成比例"
+  },
+  "aspectRatioNone": {
+    "message": "不添加比例文本"
+  },
+  "aspectRatio1_1": {
+    "message": "1:1 · 正方形"
+  },
+  "aspectRatio16_9": {
+    "message": "16:9 · 横向宽屏"
+  },
+  "aspectRatio9_16": {
+    "message": "9:16 · 纵向"
+  },
+  "aspectRatio4_3": {
+    "message": "4:3 · 标准横向"
+  },
+  "aspectRatio3_2": {
+    "message": "3:2 · 相片横向"
+  },
+  "commonPromptLabel": {
+    "message": "公共提示词"
+  },
+  "optionalLabel": {
+    "message": "选填"
+  },
+  "commonPromptPlaceholder": {
+    "message": "例如：Modern anime illustration, clean cel shading, cozy cinematic lighting."
+  },
+  "toggleRefRule": {
+    "message": "指示将附加的参考图片用作固定画页"
+  },
+  "toggleAspectRule": {
+    "message": "自动添加所选比例文本"
+  },
+  "toggleCommonPrompt": {
+    "message": "自动添加公共提示词"
+  },
+  "aspectRatioHint": {
+    "message": "直接在 ChatGPT 的界面中选择一次 16:9 比例，也会使生成更具一致性。"
+  },
+  "promptCardsTitle": {
+    "message": "3. 提示词卡片"
+  },
+  "promptInputLabel": {
+    "message": "每行粘贴一个提示词。"
+  },
+  "promptInputPlaceholder": {
+    "message": "Scene 01: ...\nScene 02: ...\nScene 03: ..."
+  },
+  "buildCardsBtn": {
+    "message": "生成卡片"
+  },
+  "savePromptsBtn": {
+    "message": "保存"
+  },
+  "clearPromptsBtn": {
+    "message": "清除"
+  },
+  "insertModeLabel": {
+    "message": "插入方式"
+  },
+  "insertModeReplace": {
+    "message": "覆盖"
+  },
+  "insertModeAppend": {
+    "message": "追加到末尾"
+  },
+  "statusDefault": {
+    "message": "打开 ChatGPT 标签页开始使用。"
+  },
+  "promptCardTitle": {
+    "message": "点击以将包含固定设置的提示词插入到 ChatGPT 输入框中。"
+  },
+  "imageCountFormat": {
+    "message": "$1 张",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "promptCountFormat": {
+    "message": "$1 个",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "previewRefRule": {
+    "message": "参考图片锁定规则"
+  },
+  "previewAspectRule": {
+    "message": "$1 比例",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "previewCommonPrompt": {
+    "message": "公共提示词"
+  },
+  "previewPrefix": {
+    "message": "点击卡片时应用：$1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "previewNone": {
+    "message": "点击卡片时仅粘贴原始提示词，不添加额外规则。"
+  },
+  "statusClearImages": {
+    "message": "已清除图片列表。"
+  },
+  "statusClearPrompts": {
+    "message": "已清除提示词。"
+  },
+  "statusBuildCards": {
+    "message": "已创建 $1 个提示词卡片。",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSavePrompts": {
+    "message": "已保存提示词到浏览器。"
+  },
+  "statusApplyPrompt": {
+    "message": "已将固定设置应用到第 $1 个提示词。",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusNoImages": {
+    "message": "请先选择参考图片。"
+  },
+  "statusPreparingImages": {
+    "message": "正在准备 $1 张图片...",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusUploadSuccess": {
+    "message": "已将 $1 张图片附加到 ChatGPT 输入框。在此对话中将它们用作参考图片。",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusNotChatGPT": {
+    "message": "当前活动标签页不是 ChatGPT。请先打开 chatgpt.com 对话。"
+  },
+  "statusNoEditor": {
+    "message": "未能找到 ChatGPT 输入框。请打开对话页面。"
+  },
+  "statusNoFileInput": {
+    "message": "未能找到文件上传元素。ChatGPT 的页面界面可能已更改。"
+  },
+  "statusScriptInjectFailed": {
+    "message": "未能连接 ChatGPT 辅助脚本。请刷新 ChatGPT 标签页并重试。"
+  },
+  "statusInvalidTab": {
+    "message": "未能找到有效的 ChatGPT 标签页。"
+  },
+  "statusChatGPTOnly": {
+    "message": "只能在 ChatGPT 标签页上使用。"
+  },
+  "imageRemoveTitle": {
+    "message": "移除 $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "autoSendLabel": {
+    "message": "插入后自动发送"
+  },
+  "runSequenceBtn": {
+    "message": "运行序列"
+  },
+  "cancelSequenceBtn": {
+    "message": "取消序列"
+  },
+  "modalTitle": {
+    "message": "输入模板变量"
+  },
+  "modalInsertBtn": {
+    "message": "插入并发送"
+  },
+  "modalCancelBtn": {
+    "message": "取消"
+  },
+  "statusSequenceRunning": {
+    "message": "正在运行序列 ($1/$2)...",
+    "placeholders": {
+      "1": { "content": "$1" },
+      "2": { "content": "$2" }
+    }
+  },
+  "statusSequenceComplete": {
+    "message": "序列已成功完成。"
+  },
+  "statusSequenceCancelled": {
+    "message": "序列已取消。"
+  },
+  "loginSubtitle": {
+    "message": "登录以解锁 Pro 功能和序列生成。"
+  },
+  "googleSignIn": {
+    "message": "使用 Google 登录"
+  },
+  "debugBypass": {
+    "message": "跳过并解锁 Pro [调试]"
+  },
+  "signOutBtn": {
+    "message": "退出登录"
+  },
+  "upgradeBtn": {
+    "message": "购买 Pro"
+  },
+  "proFeatureVariables": {
+    "message": "模板变量是 Pro 功能。请升级以解锁！"
+  },
+  "proFeatureSequence": {
+    "message": "序列生成是 Pro 功能。请升级以解锁！"
+  }
+}

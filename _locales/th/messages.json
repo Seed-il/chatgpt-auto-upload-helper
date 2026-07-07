@@ -1,0 +1,280 @@
+{
+  "extName": {
+    "message": "ChatGPT Auto Upload Helper"
+  },
+  "extDescription": {
+    "message": "อัปโหลดรูปภาพอ้างอิงและแทรกการ์ดพรอมต์ลงใน ChatGPT"
+  },
+  "sidepanelTitle": {
+    "message": "ChatGPT Auto Upload Helper"
+  },
+  "sidepanelDesc": {
+    "message": "แทรกการ์ดพรอมต์ลงในช่องป้อนข้อมูลของ ChatGPT ได้อย่างรวดเร็ว โดยรักษาภาพอ้างอิงและกฎอัตราส่วนภาพไว้"
+  },
+  "refImagesTitle": {
+    "message": "1. รูปภาพอ้างอิง"
+  },
+  "selectImages": {
+    "message": "เลือกรูปภาพ"
+  },
+  "imageTypesHint": {
+    "message": "ชีตตัวละคร · ชีตพื้นหลัง · ชีตอาหาร ฯลฯ"
+  },
+  "uploadImagesBtn": {
+    "message": "แนบรูปภาพอ้างอิงไปยัง ChatGPT"
+  },
+  "clearImagesBtn": {
+    "message": "ล้างรูปภาพ"
+  },
+  "refImagesHint": {
+    "message": "การแนบไฟล์จะถูกรักษาไว้เฉพาะในการสนทนา ChatGPT ปัจจุบันเท่านั้น กรุณาแนบใหม่อีกครั้งหลังจากเปิดการสนทนาใหม่หรือรีเฟรชหน้าเว็บ หากจำเป็น"
+  },
+  "generationSettingsTitle": {
+    "message": "2. ตั้งค่าการสร้างคงที่"
+  },
+  "autoApplyBadge": {
+    "message": "ใช้ภาพอัตโนมัติ"
+  },
+  "aspectRatioLabel": {
+    "message": "อัตราส่วนภาพ"
+  },
+  "aspectRatioNone": {
+    "message": "ไม่เพิ่มข้อความอัตราส่วน"
+  },
+  "aspectRatio1_1": {
+    "message": "1:1 · จัตุรัส"
+  },
+  "aspectRatio16_9": {
+    "message": "16:9 · แนวนอนกว้าง"
+  },
+  "aspectRatio9_16": {
+    "message": "9:16 · แนวตั้ง"
+  },
+  "aspectRatio4_3": {
+    "message": "4:3 · แนวนอนมาตรฐาน"
+  },
+  "aspectRatio3_2": {
+    "message": "3:2 · แนวนอนถ่ายภาพ"
+  },
+  "commonPromptLabel": {
+    "message": "พรอมต์ร่วม"
+  },
+  "optionalLabel": {
+    "message": "ระบุหรือไม่ก็ได้"
+  },
+  "commonPromptPlaceholder": {
+    "message": "ต.ย., Modern anime illustration, clean cel shading, cozy cinematic lighting."
+  },
+  "toggleRefRule": {
+    "message": "แนะนำให้ใช้รูปภาพอ้างอิงที่แนบมาเป็นชีตคงที่"
+  },
+  "toggleAspectRule": {
+    "message": "เพิ่มข้อความอัตราส่วนที่เลือกโดยอัตโนมัติ"
+  },
+  "toggleCommonPrompt": {
+    "message": "เพิ่มพรอมต์ร่วมโดยอัตโนมัติ"
+  },
+  "aspectRatioHint": {
+    "message": "การเลือกอัตราส่วน 16:9 โดยตรงในอินเทอร์เฟซของ ChatGPT หนึ่งครั้งก็จะทำให้อัตราส่วนคงที่มากขึ้น"
+  },
+  "promptCardsTitle": {
+    "message": "3. การ์ดพรอมต์"
+  },
+  "promptInputLabel": {
+    "message": "วางหนึ่งพรอมต์ต่อหนึ่งบรรทัด"
+  },
+  "promptInputPlaceholder": {
+    "message": "Scene 01: ...\nScene 02: ...\nScene 03: ..."
+  },
+  "buildCardsBtn": {
+    "message": "สร้างการ์ด"
+  },
+  "savePromptsBtn": {
+    "message": "บันทึก"
+  },
+  "clearPromptsBtn": {
+    "message": "ล้าง"
+  },
+  "insertModeLabel": {
+    "message": "โหมดแทรก"
+  },
+  "insertModeReplace": {
+    "message": "เขียนทับ"
+  },
+  "insertModeAppend": {
+    "message": "ต่อท้าย"
+  },
+  "statusDefault": {
+    "message": "เปิดแท็บ ChatGPT เพื่อเริ่มต้นใช้งาน"
+  },
+  "promptCardTitle": {
+    "message": "คลิกเพื่อแทรกพรอมต์ที่มีการตั้งค่าคงที่ลงในช่องป้อนของ ChatGPT"
+  },
+  "imageCountFormat": {
+    "message": "$1 รูป",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "promptCountFormat": {
+    "message": "$1 การ์ด",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "previewRefRule": {
+    "message": "กฎการล็อกภาพอ้างอิง"
+  },
+  "previewAspectRule": {
+    "message": "อัตราส่วน $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "previewCommonPrompt": {
+    "message": "พรอมต์ร่วม"
+  },
+  "previewPrefix": {
+    "message": "ใช้เมื่อคลิกการ์ด: $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "previewNone": {
+    "message": "เพียงแค่วางพรอมต์เดิมโดยไม่มีกฎเพิ่มเติมเมื่อคลิกการ์ด"
+  },
+  "statusClearImages": {
+    "message": "ล้างรายการรูปภาพแล้ว"
+  },
+  "statusClearPrompts": {
+    "message": "ล้างพรอมต์แล้ว"
+  },
+  "statusBuildCards": {
+    "message": "สร้างการ์ดพรอมต์ $1 การ์ดแล้ว",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSavePrompts": {
+    "message": "บันทึกพรอมต์ลงในเบราว์เซอร์แล้ว"
+  },
+  "statusApplyPrompt": {
+    "message": "ใช้การตั้งค่าคงที่กับพรอมต์ที่ $1 แล้ว",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusNoImages": {
+    "message": "โปรดเลือกรูปภาพอ้างอิงก่อน"
+  },
+  "statusPreparingImages": {
+    "message": "กำลังเตรียมรูปภาพ $1 รูป...",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusUploadSuccess": {
+    "message": "แนบรูปภาพ $1 รูปไปยังอินพุตของ ChatGPT แล้ว ใช้เป็นภาพอ้างอิงในบทสนทนานี้",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusNotChatGPT": {
+    "message": "แท็บปัจจุบันไม่ใช่ ChatGPT โปรดเปิดบทสนทนาบน chatgpt.com ก่อน"
+  },
+  "statusNoEditor": {
+    "message": "ไม่พบช่องป้อนข้อมูลของ ChatGPT โปรดเปิดหน้าบทสนทนา"
+  },
+  "statusNoFileInput": {
+    "message": "ไม่พบองค์ประกอบอัปโหลดไฟล์ หน้าตาอินเทอร์เฟซของ ChatGPT อาจเปลี่ยนแปลงไป"
+  },
+  "statusScriptInjectFailed": {
+    "message": "ไม่สามารถเชื่อมต่อสคริปต์ตัวช่วยของ ChatGPT โปรดรีเฟรชแท็บ ChatGPT แล้วลองอีกครั้ง"
+  },
+  "statusInvalidTab": {
+    "message": "ไม่พบแท็บ ChatGPT ที่ถูกต้อง"
+  },
+  "statusChatGPTOnly": {
+    "message": "ใช้งานได้บนแท็บ ChatGPT เท่านั้น"
+  },
+  "imageRemoveTitle": {
+    "message": "ลบ $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "autoSendLabel": {
+    "message": "ส่งอัตโนมัติหลังจากแทรก"
+  },
+  "runSequenceBtn": {
+    "message": "รันลำดับ"
+  },
+  "cancelSequenceBtn": {
+    "message": "ยกเลิกลำดับ"
+  },
+  "modalTitle": {
+    "message": "กรอกตัวแปรเทมเพลต"
+  },
+  "modalInsertBtn": {
+    "message": "แทรกและส่ง"
+  },
+  "modalCancelBtn": {
+    "message": "ยกเลิก"
+  },
+  "statusSequenceRunning": {
+    "message": "กำลังรันลำดับ ($1/$2)...",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "statusSequenceComplete": {
+    "message": "รันลำดับเสร็จสมบูรณ์แล้ว"
+  },
+  "statusSequenceCancelled": {
+    "message": "ยกเลิกลำดับแล้ว"
+  },
+  "loginSubtitle": {
+    "message": "เข้าสู่ระบบเพื่อปลดล็อกฟังก์ชัน Pro และการสร้างลำดับต่อเนื่อง"
+  },
+  "googleSignIn": {
+    "message": "เข้าสู่ระบบด้วย Google"
+  },
+  "debugBypass": {
+    "message": "ข้ามและปลดล็อก Pro [ดีบัก]"
+  },
+  "signOutBtn": {
+    "message": "ออกจากระบบ"
+  },
+  "upgradeBtn": {
+    "message": "ซื้อ Pro"
+  },
+  "proFeatureVariables": {
+    "message": "ตัวแปรเทมเพลตเป็นฟังก์ชันสำหรับผู้ใช้ Pro โปรดอัปเกรดเพื่อปลดล็อก!"
+  },
+  "proFeatureSequence": {
+    "message": "การรันลำดับเป็นฟังก์ชันสำหรับผู้ใช้ Pro โปรดอัปเกรดเพื่อปลดล็อก!"
+  }
+}

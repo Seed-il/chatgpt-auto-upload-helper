@@ -1,0 +1,276 @@
+{
+  "extName": {
+    "message": "ChatGPT Auto Upload Helper"
+  },
+  "extDescription": {
+    "message": "Upload reference images and insert prompt cards into ChatGPT."
+  },
+  "sidepanelTitle": {
+    "message": "ChatGPT Auto Upload Helper"
+  },
+  "sidepanelDesc": {
+    "message": "Quickly insert prompt cards into the ChatGPT input field while maintaining reference images and aspect ratio rules."
+  },
+  "refImagesTitle": {
+    "message": "1. Reference Images"
+  },
+  "selectImages": {
+    "message": "Select Images"
+  },
+  "imageTypesHint": {
+    "message": "Character sheets · Background sheets · Food sheets, etc."
+  },
+  "uploadImagesBtn": {
+    "message": "Attach reference images to ChatGPT"
+  },
+  "clearImagesBtn": {
+    "message": "Clear Images"
+  },
+  "refImagesHint": {
+    "message": "Attachments are kept in the current ChatGPT conversation only. Re-attach after opening a new conversation or refreshing, if needed."
+  },
+  "generationSettingsTitle": {
+    "message": "2. Fixed Generation Settings"
+  },
+  "autoApplyBadge": {
+    "message": "Auto Apply"
+  },
+  "aspectRatioLabel": {
+    "message": "Generation Ratio"
+  },
+  "aspectRatioNone": {
+    "message": "Do not add ratio text"
+  },
+  "aspectRatio1_1": {
+    "message": "1:1 · Square"
+  },
+  "aspectRatio16_9": {
+    "message": "16:9 · Horizontal Wide"
+  },
+  "aspectRatio9_16": {
+    "message": "9:16 · Vertical"
+  },
+  "aspectRatio4_3": {
+    "message": "4:3 · Standard Horizontal"
+  },
+  "aspectRatio3_2": {
+    "message": "3:2 · Photo Horizontal"
+  },
+  "commonPromptLabel": {
+    "message": "Common Prompt"
+  },
+  "optionalLabel": {
+    "message": "Optional"
+  },
+  "commonPromptPlaceholder": {
+    "message": "e.g., Modern anime illustration, clean cel shading, cozy cinematic lighting."
+  },
+  "toggleRefRule": {
+    "message": "Instruct to use attached reference images as a fixed sheet"
+  },
+  "toggleAspectRule": {
+    "message": "Automatically add selected ratio text"
+  },
+  "toggleCommonPrompt": {
+    "message": "Automatically add common prompt"
+  },
+  "aspectRatioHint": {
+    "message": "Choosing the 16:9 ratio directly in ChatGPT's UI once is also more consistent."
+  },
+  "promptCardsTitle": {
+    "message": "3. Prompt Cards"
+  },
+  "promptInputLabel": {
+    "message": "Paste one prompt per line."
+  },
+  "promptInputPlaceholder": {
+    "message": "Scene 01: ...\nScene 02: ...\nScene 03: ..."
+  },
+  "buildCardsBtn": {
+    "message": "Generate Cards"
+  },
+  "savePromptsBtn": {
+    "message": "Save"
+  },
+  "clearPromptsBtn": {
+    "message": "Clear"
+  },
+  "insertModeLabel": {
+    "message": "Insertion Method"
+  },
+  "insertModeReplace": {
+    "message": "Overwrite"
+  },
+  "insertModeAppend": {
+    "message": "Append at end"
+  },
+  "statusDefault": {
+    "message": "Open a ChatGPT tab to start using."
+  },
+  "promptCardTitle": {
+    "message": "Click to insert prompt with fixed settings into ChatGPT input field."
+  },
+  "imageCountFormat": {
+    "message": "$1 images",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "promptCountFormat": {
+    "message": "$1 cards",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "previewRefRule": {
+    "message": "Reference image lock rule"
+  },
+  "previewAspectRule": {
+    "message": "$1 ratio",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "previewCommonPrompt": {
+    "message": "Common prompt"
+  },
+  "previewPrefix": {
+    "message": "Applies on card click: $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "previewNone": {
+    "message": "Pastes original prompt only without extra rules on card click."
+  },
+  "statusClearImages": {
+    "message": "Cleared the image list."
+  },
+  "statusClearPrompts": {
+    "message": "Cleared the prompts."
+  },
+  "statusBuildCards": {
+    "message": "Created $1 prompt cards.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSavePrompts": {
+    "message": "Saved prompts to the browser."
+  },
+  "statusApplyPrompt": {
+    "message": "Applied fixed settings to prompt #$1.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusNoImages": {
+    "message": "Please select reference images first."
+  },
+  "statusPreparingImages": {
+    "message": "Preparing $1 images...",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusUploadSuccess": {
+    "message": "Attached $1 images to the ChatGPT input. Use them as reference images in this conversation.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusNotChatGPT": {
+    "message": "Active tab is not ChatGPT. Please open a chatgpt.com conversation first."
+  },
+  "statusNoEditor": {
+    "message": "Failed to find ChatGPT input field. Please open a conversation page."
+  },
+  "statusNoFileInput": {
+    "message": "Failed to find file upload element. ChatGPT's page UI may have changed."
+  },
+  "statusScriptInjectFailed": {
+    "message": "Failed to connect ChatGPT helper script. Please refresh the ChatGPT tab and try again."
+  },
+  "statusInvalidTab": {
+    "message": "Failed to find a valid ChatGPT tab."
+  },
+  "statusChatGPTOnly": {
+    "message": "Can only be used on a ChatGPT tab."
+  },
+  "imageRemoveTitle": {
+    "message": "Remove $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "autoSendLabel": {
+    "message": "Auto-send after inserting"
+  },
+  "runSequenceBtn": {
+    "message": "Run Sequence"
+  },
+  "cancelSequenceBtn": {
+    "message": "Cancel Sequence"
+  },
+  "modalTitle": {
+    "message": "Enter Template Variables"
+  },
+  "modalInsertBtn": {
+    "message": "Insert & Send"
+  },
+  "modalCancelBtn": {
+    "message": "Cancel"
+  },
+  "statusSequenceRunning": {
+    "message": "Running sequence ($1/$2)...",
+    "placeholders": {
+      "1": { "content": "$1" },
+      "2": { "content": "$2" }
+    }
+  },
+  "statusSequenceComplete": {
+    "message": "Sequence completed successfully."
+  },
+  "statusSequenceCancelled": {
+    "message": "Sequence cancelled."
+  },
+  "loginSubtitle": {
+    "message": "Sign in to unlock Pro features and sequential generation."
+  },
+  "googleSignIn": {
+    "message": "Sign in with Google"
+  },
+  "debugBypass": {
+    "message": "Bypass & Unlock Pro [Debug]"
+  },
+  "signOutBtn": {
+    "message": "Sign Out"
+  },
+  "upgradeBtn": {
+    "message": "Get Pro"
+  },
+  "proFeatureVariables": {
+    "message": "Template variables are a Pro feature. Please upgrade to unlock!"
+  },
+  "proFeatureSequence": {
+    "message": "Sequential generation is a Pro feature. Please upgrade to unlock!"
+  }
+}

@@ -1,0 +1,280 @@
+{
+  "extName": {
+    "message": "ChatGPT Auto Upload Helper"
+  },
+  "extDescription": {
+    "message": "Unggah gambar referensi dan masukkan kartu prompt ke dalam ChatGPT."
+  },
+  "sidepanelTitle": {
+    "message": "ChatGPT Auto Upload Helper"
+  },
+  "sidepanelDesc": {
+    "message": "Masukkan kartu prompt dengan cepat ke bidang input ChatGPT sambil mempertahankan gambar referensi dan aturan rasio aspek."
+  },
+  "refImagesTitle": {
+    "message": "1. Gambar Referensi"
+  },
+  "selectImages": {
+    "message": "Pilih Gambar"
+  },
+  "imageTypesHint": {
+    "message": "Lembar karakter · Lembar latar belakang · Lembar makanan, dll."
+  },
+  "uploadImagesBtn": {
+    "message": "Lampirkan Gambar Referensi ke ChatGPT"
+  },
+  "clearImagesBtn": {
+    "message": "Bersihkan Gambar"
+  },
+  "refImagesHint": {
+    "message": "Lampiran hanya disimpan dalam percakapan ChatGPT saat ini. Lampirkan kembali setelah membuka percakapan baru atau memuat ulang, jika diperlukan."
+  },
+  "generationSettingsTitle": {
+    "message": "2. Pengaturan Pembuatan Tetap"
+  },
+  "autoApplyBadge": {
+    "message": "Terapkan Auto"
+  },
+  "aspectRatioLabel": {
+    "message": "Rasio Aspek"
+  },
+  "aspectRatioNone": {
+    "message": "Jangan tambahkan teks rasio"
+  },
+  "aspectRatio1_1": {
+    "message": "1:1 · Persegi"
+  },
+  "aspectRatio16_9": {
+    "message": "16:9 · Horizontal Lebar"
+  },
+  "aspectRatio9_16": {
+    "message": "9:16 · Vertikal"
+  },
+  "aspectRatio4_3": {
+    "message": "4:3 · Horizontal Standar"
+  },
+  "aspectRatio3_2": {
+    "message": "3:2 · Horizontal Foto"
+  },
+  "commonPromptLabel": {
+    "message": "Prompt Umum"
+  },
+  "optionalLabel": {
+    "message": "Opsional"
+  },
+  "commonPromptPlaceholder": {
+    "message": "Misal, Modern anime illustration, clean cel shading, cozy cinematic lighting."
+  },
+  "toggleRefRule": {
+    "message": "Instruksikan untuk menggunakan gambar referensi yang dilampirkan sebagai lembar tetap"
+  },
+  "toggleAspectRule": {
+    "message": "Tambahkan teks rasio yang dipilih secara otomatis"
+  },
+  "toggleCommonPrompt": {
+    "message": "Tambahkan prompt umum secara otomatis"
+  },
+  "aspectRatioHint": {
+    "message": "Memilih rasio 16:9 langsung di antarmuka ChatGPT sekali juga akan membuat hasil lebih konsisten."
+  },
+  "promptCardsTitle": {
+    "message": "3. Kartu Prompt"
+  },
+  "promptInputLabel": {
+    "message": "Tempel satu prompt per baris."
+  },
+  "promptInputPlaceholder": {
+    "message": "Scene 01: ...\nScene 02: ...\nScene 03: ..."
+  },
+  "buildCardsBtn": {
+    "message": "Buat Kartu"
+  },
+  "savePromptsBtn": {
+    "message": "Simpan"
+  },
+  "clearPromptsBtn": {
+    "message": "Bersihkan"
+  },
+  "insertModeLabel": {
+    "message": "Metode Penyisipan"
+  },
+  "insertModeReplace": {
+    "message": "Ganti"
+  },
+  "insertModeAppend": {
+    "message": "Tambahkan di Akhir"
+  },
+  "statusDefault": {
+    "message": "Buka tab ChatGPT untuk mulai menggunakan."
+  },
+  "promptCardTitle": {
+    "message": "Klik untuk memasukkan prompt dengan pengaturan tetap ke bidang input ChatGPT."
+  },
+  "imageCountFormat": {
+    "message": "$1 gambar",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "promptCountFormat": {
+    "message": "$1 kartu",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "previewRefRule": {
+    "message": "Aturan penguncian gambar referensi"
+  },
+  "previewAspectRule": {
+    "message": "Rasio $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "previewCommonPrompt": {
+    "message": "Prompt Umum"
+  },
+  "previewPrefix": {
+    "message": "Diterapkan saat mengklik kartu: $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "previewNone": {
+    "message": "Hanya menempelkan prompt asli tanpa aturan tambahan saat mengklik kartu."
+  },
+  "statusClearImages": {
+    "message": "Daftar gambar dibersihkan."
+  },
+  "statusClearPrompts": {
+    "message": "Prompt dibersihkan."
+  },
+  "statusBuildCards": {
+    "message": "Membuat $1 kartu prompt.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSavePrompts": {
+    "message": "Prompt disimpan ke browser."
+  },
+  "statusApplyPrompt": {
+    "message": "Pengaturan tetap diterapkan pada prompt ke-$1.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusNoImages": {
+    "message": "Silakan pilih gambar referensi terlebih dahulu."
+  },
+  "statusPreparingImages": {
+    "message": "Menyiapkan $1 gambar...",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusUploadSuccess": {
+    "message": "Melampirkan $1 gambar ke input ChatGPT. Gunakan sebagai gambar referensi dalam percakapan ini.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusNotChatGPT": {
+    "message": "Tab aktif saat ini bukan ChatGPT. Silakan buka percakapan di chatgpt.com terlebih dahulu."
+  },
+  "statusNoEditor": {
+    "message": "Tidak dapat menemukan bidang input ChatGPT. Silakan buka halaman percakapan."
+  },
+  "statusNoFileInput": {
+    "message": "Tidak dapat menemukan elemen unggah file. Antarmuka ChatGPT mungkin telah berubah."
+  },
+  "statusScriptInjectFailed": {
+    "message": "Gagal menghubungkan skrip pembantu ChatGPT. Silakan segarkan tab ChatGPT dan coba lagi."
+  },
+  "statusInvalidTab": {
+    "message": "Tidak dapat menemukan tab ChatGPT yang valid."
+  },
+  "statusChatGPTOnly": {
+    "message": "Hanya dapat digunakan di tab ChatGPT."
+  },
+  "imageRemoveTitle": {
+    "message": "Hapus $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "autoSendLabel": {
+    "message": "Kirim otomatis setelah menyisipkan"
+  },
+  "runSequenceBtn": {
+    "message": "Jalankan Urutan"
+  },
+  "cancelSequenceBtn": {
+    "message": "Batalkan Urutan"
+  },
+  "modalTitle": {
+    "message": "Masukkan Variabel Templat"
+  },
+  "modalInsertBtn": {
+    "message": "Sisipkan & Kirim"
+  },
+  "modalCancelBtn": {
+    "message": "Batal"
+  },
+  "statusSequenceRunning": {
+    "message": "Menjalankan urutan ($1/$2)...",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "statusSequenceComplete": {
+    "message": "Urutan berhasil diselesaikan."
+  },
+  "statusSequenceCancelled": {
+    "message": "Urutan dibatalkan."
+  },
+  "loginSubtitle": {
+    "message": "Masuk untuk membuka kunci fitur Pro dan pembuatan urutan."
+  },
+  "googleSignIn": {
+    "message": "Masuk dengan Google"
+  },
+  "debugBypass": {
+    "message": "Lewati & Buka Pro [Debug]"
+  },
+  "signOutBtn": {
+    "message": "Keluar"
+  },
+  "upgradeBtn": {
+    "message": "Beli Pro"
+  },
+  "proFeatureVariables": {
+    "message": "Variabel templat adalah fitur Pro. Silakan tingkatkan untuk membuka kunci!"
+  },
+  "proFeatureSequence": {
+    "message": "Pembuatan urutan adalah fitur Pro. Silakan tingkatkan untuk membuka kunci!"
+  }
+}

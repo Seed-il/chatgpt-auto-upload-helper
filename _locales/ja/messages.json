@@ -1,0 +1,276 @@
+{
+  "extName": {
+    "message": "ChatGPT Auto Upload Helper"
+  },
+  "extDescription": {
+    "message": "参照画像をアップロードし、プロンプトカードをChatGPTに挿入します。"
+  },
+  "sidepanelTitle": {
+    "message": "ChatGPT Auto Upload Helper"
+  },
+  "sidepanelDesc": {
+    "message": "参照画像と縦横比のルールを維持しながら、プロンプトカードをChatGPT入力欄に素早く挿入します。"
+  },
+  "refImagesTitle": {
+    "message": "1. 参照画像"
+  },
+  "selectImages": {
+    "message": "画像を選択"
+  },
+  "imageTypesHint": {
+    "message": "キャラクターシート・背景シート・フードシートなど"
+  },
+  "uploadImagesBtn": {
+    "message": "ChatGPTに参照画像を添付"
+  },
+  "clearImagesBtn": {
+    "message": "画像をクリア"
+  },
+  "refImagesHint": {
+    "message": "添付は現在のChatGPTの会話でのみ保持されます。必要に応じて、新しい会話を開いた後や再読み込み後に再添付してください。"
+  },
+  "generationSettingsTitle": {
+    "message": "2. 固定生成設定"
+  },
+  "autoApplyBadge": {
+    "message": "自動適用"
+  },
+  "aspectRatioLabel": {
+    "message": "生成比率"
+  },
+  "aspectRatioNone": {
+    "message": "比率テキストを追加しない"
+  },
+  "aspectRatio1_1": {
+    "message": "1:1 ・ 正方形"
+  },
+  "aspectRatio16_9": {
+    "message": "16:9 ・ 横長ワイド"
+  },
+  "aspectRatio9_16": {
+    "message": "9:16 ・ 縦長"
+  },
+  "aspectRatio4_3": {
+    "message": "4:3 ・ 標準横長"
+  },
+  "aspectRatio3_2": {
+    "message": "3:2 ・ 写真横長"
+  },
+  "commonPromptLabel": {
+    "message": "共通プロンプト"
+  },
+  "optionalLabel": {
+    "message": "任意"
+  },
+  "commonPromptPlaceholder": {
+    "message": "例：Modern anime illustration, clean cel shading, cozy cinematic lighting."
+  },
+  "toggleRefRule": {
+    "message": "添付された参照画像を固定シートとして使用するように指示する"
+  },
+  "toggleAspectRule": {
+    "message": "選択した比率テキストを自動的に追加する"
+  },
+  "toggleCommonPrompt": {
+    "message": "共通プロンプトを自動的に追加する"
+  },
+  "aspectRatioHint": {
+    "message": "ChatGPTの画面で16:9比率を直接一度選択しておくことでも、より一貫性が得られます。"
+  },
+  "promptCardsTitle": {
+    "message": "3. プロンプトカード"
+  },
+  "promptInputLabel": {
+    "message": "1行に1つのプロンプトを貼り付けてください。"
+  },
+  "promptInputPlaceholder": {
+    "message": "Scene 01: ...\nScene 02: ...\nScene 03: ..."
+  },
+  "buildCardsBtn": {
+    "message": "カードを生成"
+  },
+  "savePromptsBtn": {
+    "message": "保存"
+  },
+  "clearPromptsBtn": {
+    "message": "クリア"
+  },
+  "insertModeLabel": {
+    "message": "挿入方法"
+  },
+  "insertModeReplace": {
+    "message": "上書き"
+  },
+  "insertModeAppend": {
+    "message": "末尾に追加"
+  },
+  "statusDefault": {
+    "message": "使用を開始するには、ChatGPTタブを開いてください。"
+  },
+  "promptCardTitle": {
+    "message": "クリックして、固定設定が適用されたプロンプトをChatGPTに入力します。"
+  },
+  "imageCountFormat": {
+    "message": "$1枚",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "promptCountFormat": {
+    "message": "$1個",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "previewRefRule": {
+    "message": "参照画像固定ルール"
+  },
+  "previewAspectRule": {
+    "message": "$1 比率",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "previewCommonPrompt": {
+    "message": "共通プロンプト"
+  },
+  "previewPrefix": {
+    "message": "カードクリック時に適用: $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "previewNone": {
+    "message": "カードクリック時に追加ルールなしで元のプロンプトのみを貼り付けます。"
+  },
+  "statusClearImages": {
+    "message": "画像リストをクリアしました。"
+  },
+  "statusClearPrompts": {
+    "message": "プロンプトをクリアしました。"
+  },
+  "statusBuildCards": {
+    "message": "$1個のプロンプトカードを作成しました。",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusSavePrompts": {
+    "message": "プロンプトをブラウザに保存しました。"
+  },
+  "statusApplyPrompt": {
+    "message": "$1番目のプロンプトに固定設定を適用しました。",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusNoImages": {
+    "message": "最初に参照画像を選択してください。"
+  },
+  "statusPreparingImages": {
+    "message": "$1枚の画像を準備中...",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusUploadSuccess": {
+    "message": "$1枚の画像がChatGPTの入力欄に添付されました。この会話の参照画像として使用してください。",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusNotChatGPT": {
+    "message": "현재의 アクティブタブがChatGPTではありません。まずchatgpt.comの会話を開いてください。"
+  },
+  "statusNoEditor": {
+    "message": "ChatGPTの入力欄を見つけられませんでした。会話ページを開いてください。"
+  },
+  "statusNoFileInput": {
+    "message": "ファイルアップロード要素が見つかりませんでした。ChatGPTのUIが変更された可能性があります。"
+  },
+  "statusScriptInjectFailed": {
+    "message": "ChatGPTヘルパースクリプトの接続に失敗しました。ChatGPTタブを更新して再試行してください。"
+  },
+  "statusInvalidTab": {
+    "message": "有効なChatGPTタブが見つかりませんでした。"
+  },
+  "statusChatGPTOnly": {
+    "message": "ChatGPTタブでのみ使用できます。"
+  },
+  "imageRemoveTitle": {
+    "message": "$1を削除",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "autoSendLabel": {
+    "message": "挿入後に自動送信"
+  },
+  "runSequenceBtn": {
+    "message": "シーケンス実行"
+  },
+  "cancelSequenceBtn": {
+    "message": "シーケンスキャンセル"
+  },
+  "modalTitle": {
+    "message": "テンプレート変数入力"
+  },
+  "modalInsertBtn": {
+    "message": "入力して送信"
+  },
+  "modalCancelBtn": {
+    "message": "キャンセル"
+  },
+  "statusSequenceRunning": {
+    "message": "シーケンス実行中 ($1/$2)...",
+    "placeholders": {
+      "1": { "content": "$1" },
+      "2": { "content": "$2" }
+    }
+  },
+  "statusSequenceComplete": {
+    "message": "シーケンスが正常に完了しました。"
+  },
+  "statusSequenceCancelled": {
+    "message": "シーケンスがキャンセルされました。"
+  },
+  "loginSubtitle": {
+    "message": "Pro機能とシーケンス生成のロックを解除するにはログインしてください。"
+  },
+  "googleSignIn": {
+    "message": "Googleでログイン"
+  },
+  "debugBypass": {
+    "message": "バイパスしてProをアンロック [デバッグ]"
+  },
+  "signOutBtn": {
+    "message": "ログアウト"
+  },
+  "upgradeBtn": {
+    "message": "Proを購入"
+  },
+  "proFeatureVariables": {
+    "message": "テンプレート変数はPro機能です。ロックを解除するにはアップグレードしてください！"
+  },
+  "proFeatureSequence": {
+    "message": "シーケンス生成はPro機能です。ロックを解除するにはアップグレードしてください！"
+  }
+}
