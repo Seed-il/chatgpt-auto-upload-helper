@@ -85,6 +85,7 @@ async function init() {
     $('#loginScreen').style.display = 'none';
     $('.app-shell').style.display = 'block';
     updateUserProfileUI();
+    syncSubscriptionStatus();
   } else {
     $('#loginScreen').style.display = 'flex';
     $('.app-shell').style.display = 'none';
@@ -210,6 +211,13 @@ function bindEvents() {
       window.open(checkoutUrl, '_blank');
     });
   }
+
+  // Sync subscription status whenever sidepanel is focused (e.g. after returning from checkout)
+  window.addEventListener('focus', () => {
+    if (state.user) {
+      syncSubscriptionStatus();
+    }
+  });
 }
 
 function hydrateSettingsUI() {
@@ -859,5 +867,28 @@ function updateUserProfileUI() {
     footerProfile.style.display = 'none';
     proBadge.style.display = 'none';
     upgradeBtn.style.display = 'none';
+  }
+}
+
+async function syncSubscriptionStatus() {
+  if (!supabaseClient || !state.user || !state.user.id) return;
+  try {
+    const { data: profile, error } = await supabaseClient
+      .from('profiles')
+      .select('is_pro, ends_at')
+      .eq('id', state.user.id)
+      .single();
+
+    if (error) throw error;
+    if (profile) {
+      const hasPro = profile.is_pro && (profile.ends_at === null || new Date(profile.ends_at) > new Date());
+      if (hasPro !== state.isPro) {
+        state.isPro = hasPro;
+        await chrome.storage.local.set({ isPro: hasPro });
+        updateUserProfileUI();
+      }
+    }
+  } catch (err) {
+    console.warn('Subscription sync failed:', err.message);
   }
 }
