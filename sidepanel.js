@@ -12,7 +12,7 @@ const DEFAULT_SETTINGS = {
 const SUPABASE_URL = 'https://ojzgyqcsbzkgxmmmmvam.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qemd5cWNzYnprZ3htbW1tdmFtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzNDE2NTYsImV4cCI6MjA5ODkxNzY1Nn0.2B-LYUFYysF9bN3lni3iJRfmgeAcIeQcXsRVIFQqd_Q';
 // Lemon Squeezy Store URL - Replace with your actual checkout link
-const LEMON_SQUEEZY_URL = 'https://yourstore.lemonsqueezy.com/checkout/buy/productId?embed=1';
+const LEMON_SQUEEZY_URL = 'https://chatgpt-auto-upload.lemonsqueezy.com/checkout/buy/4630b190-de83-45b5-ad94-8c89596fbe72';
 const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
 const state = {
@@ -203,7 +203,11 @@ function bindEvents() {
   const upgradeBtn = $('#upgradeButton');
   if (upgradeBtn) {
     upgradeBtn.addEventListener('click', () => {
-      window.open(LEMON_SQUEEZY_URL, '_blank');
+      let checkoutUrl = LEMON_SQUEEZY_URL;
+      if (state.user && state.user.id) {
+        checkoutUrl += `?checkout[custom][user_id]=${encodeURIComponent(state.user.id)}&checkout[email]=${encodeURIComponent(state.user.email)}`;
+      }
+      window.open(checkoutUrl, '_blank');
     });
   }
 }
@@ -788,9 +792,9 @@ async function handleGoogleSignIn() {
           const hasPro = profile.is_pro && (profile.ends_at === null || new Date(profile.ends_at) > new Date());
           
           if (hasPro) {
-            await loginUser(profile.name || user.email, user.email, true);
+            await loginUser(user.id, profile.name || user.email, user.email, true);
           } else {
-            await loginUser(profile?.name || user.email, user.email, false);
+            await loginUser(user.id, profile?.name || user.email, user.email, false);
           }
         }
       } catch (err) {
@@ -803,12 +807,12 @@ async function handleGoogleSignIn() {
 }
 
 async function handleDebugBypass() {
-  await loginUser('Admin Tester', 'admin@chatgpttester.com', true);
+  await loginUser('debug-admin-id-12345', 'Admin Tester', 'admin@chatgpttester.com', true);
 }
 
-async function loginUser(name, email, isPro) {
+async function loginUser(id, name, email, isPro) {
   state.isPro = isPro;
-  state.user = { name, email };
+  state.user = { id, name, email };
   await chrome.storage.local.set({ isPro, user: state.user });
 
   $('#loginScreen').style.display = 'none';
