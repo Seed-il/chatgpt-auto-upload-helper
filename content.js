@@ -197,40 +197,23 @@ function isGenerating() {
     'button[data-testid="stop-button"]',
     'button[aria-label*="Stop"]',
     'button[aria-label*="stop"]',
-    'button[aria-label*="중지"]',
-    'button svg rect[width="10"]',
-    'button svg rect[width="12"]',
-    'button svg rect[width="14"]',
-    'button svg rect[width="16"]'
+    'button[aria-label*="중지"]'
   ];
   for (const selector of stopIndicators) {
     const found = composer.querySelector(selector);
     if (found) return true;
   }
 
-  // 2. Check if any button inside the composer has a square icon (stop button)
-  const buttons = composer.querySelectorAll('button');
-  for (const btn of buttons) {
-    if (btn.querySelector('rect')) return true;
-    const svg = btn.querySelector('svg');
-    if (svg) {
-      if (svg.innerHTML.includes('rect') || svg.getAttribute('class')?.includes('stop')) {
-        return true;
-      }
+  // 2. Check if the send button is completely absent from the DOM, or disabled while the editor has text
+  const editorText = getEditorText(editor).trim();
+  if (editorText !== '') {
+    const sendBtn = findSendButton();
+    if (!sendBtn || sendBtn.disabled) {
+      return true;
     }
   }
 
-  // 3. Check if the send button is completely absent from the DOM, or disabled while the editor has text
-  const sendBtn = findSendButton();
-  if (!sendBtn) {
-    return true;
-  }
-  const text = getEditorText(editor).trim();
-  if (sendBtn.disabled && text !== '') {
-    return true;
-  }
-
-  // 4. Check for active streaming elements (specific to ChatGPT response blocks)
+  // 3. Check for active streaming elements (specific to ChatGPT response blocks)
   const streamingIndicators = [
     '.result-streaming',
     '[class*="result-streaming"]'
