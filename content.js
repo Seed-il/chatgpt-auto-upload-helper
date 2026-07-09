@@ -10,26 +10,42 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       
       if (message.autoSend) {
         let waitBtnCount = 0;
+        let isClicking = false;
         const clickWhenReady = () => {
           try {
+            if (isClicking) return;
             const sendBtn = findSendButton();
             if (sendBtn && !sendBtn.disabled) {
-              clickSendButton(sendBtn);
-              
-              // Poll for textarea clearing (confirming it was actually sent)
-              let pollCount = 0;
-              const checkSent = () => {
-                const text = getEditorText(editor).trim();
-                if (text === '') {
-                  sendResponse({ ok: true });
-                } else if (pollCount > 100) { // 5 seconds timeout
-                  sendResponse({ ok: false, error: '프롬프트 전송에 실패했습니다. 입력창이 비워지지 않았습니다.' });
-                } else {
-                  pollCount++;
-                  setTimeout(checkSent, 50);
+              isClicking = true;
+              // 500ms settle delay to ensure React state and file attachments are fully registered
+              setTimeout(() => {
+                try {
+                  const activeBtn = findSendButton();
+                  if (activeBtn && !activeBtn.disabled) {
+                    clickSendButton(activeBtn);
+                    
+                    // Poll for textarea clearing (confirming it was actually sent)
+                    let pollCount = 0;
+                    const checkSent = () => {
+                      const text = getEditorText(editor).trim();
+                      if (text === '') {
+                        sendResponse({ ok: true });
+                      } else if (pollCount > 100) { // 5 seconds timeout
+                        sendResponse({ ok: false, error: '프롬프트 전송에 실패했습니다. 입력창이 비워지지 않았습니다.' });
+                      } else {
+                        pollCount++;
+                        setTimeout(checkSent, 50);
+                      }
+                    };
+                    setTimeout(checkSent, 50);
+                  } else {
+                    isClicking = false;
+                    setTimeout(clickWhenReady, 50);
+                  }
+                } catch (e) {
+                  sendResponse({ ok: false, error: e.message });
                 }
-              };
-              setTimeout(checkSent, 50);
+              }, 500);
             } else if (waitBtnCount < 1200) { // Max 60 seconds (1200 * 50ms)
               waitBtnCount++;
               setTimeout(clickWhenReady, 50);
@@ -170,7 +186,13 @@ function findSendButton() {
 
 function clickSendButton(btn) {
   btn.focus();
-  btn.click();
+  // Create a realistic mouse click event that bubbles up to React's delegated listeners
+  const clickEvent = new MouseEvent('click', {
+    bubbles: true,
+    cancelable: true,
+    view: window
+  });
+  btn.dispatchEvent(clickEvent);
 }
 
 function isGenerating() {
