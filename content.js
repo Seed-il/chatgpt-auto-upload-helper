@@ -16,12 +16,14 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             if (sendBtn && !sendBtn.disabled) {
               clickSendButton(sendBtn);
               
-              // Poll for textarea clearing or generation start
+              // Poll for textarea clearing (confirming it was actually sent)
               let pollCount = 0;
               const checkSent = () => {
                 const text = getEditorText(editor).trim();
-                if (text === '' || isGenerating() || pollCount > 60) {
+                if (text === '') {
                   sendResponse({ ok: true });
+                } else if (pollCount > 100) { // 5 seconds timeout
+                  sendResponse({ ok: false, error: '프롬프트 전송에 실패했습니다. 입력창이 비워지지 않았습니다.' });
                 } else {
                   pollCount++;
                   setTimeout(checkSent, 50);
@@ -69,6 +71,21 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     sendResponse({ ok: true, generating: isGenerating() });
     return;
   }
+
+  if (message?.type === 'CHECK_EDITOR_EMPTY') {
+    try {
+      const editor = findPromptEditor();
+      if (!editor) {
+        sendResponse({ ok: true, empty: true });
+      } else {
+        const text = getEditorText(editor).trim();
+        sendResponse({ ok: true, empty: text === '' });
+      }
+    } catch (error) {
+      sendResponse({ ok: false, error: error.message });
+    }
+    return;
+  }
 });
 
 function findPromptEditor() {
@@ -107,7 +124,10 @@ function findSendButton() {
     if (found) {
       const label = found.getAttribute('aria-label') || '';
       const testId = found.getAttribute('data-testid') || '';
-      if (!testId.includes('stop') && !label.includes('Stop') && !label.includes('중지')) {
+      const isExcluded = 
+        testId.includes('stop') || testId.includes('speech') || testId.includes('voice') || testId.includes('audio') ||
+        label.includes('Stop') || label.includes('중지') || label.includes('음성') || label.includes('Read') || label.includes('read');
+      if (!isExcluded) {
         return found;
       }
     }
@@ -121,14 +141,21 @@ function findSendButton() {
     if (
       testId.includes('clip') || 
       testId.includes('voice') || 
+      testId.includes('speech') || 
+      testId.includes('audio') || 
+      testId.includes('microphone') || 
       testId.includes('attachment') ||
       testId.includes('stop') ||
       ariaLabel.includes('Attach') || 
       ariaLabel.includes('voice') ||
+      ariaLabel.includes('speech') ||
+      ariaLabel.includes('audio') ||
+      ariaLabel.includes('microphone') ||
       ariaLabel.includes('stop') ||
       ariaLabel.includes('Stop') ||
       ariaLabel.includes('첨부') ||
       ariaLabel.includes('음성') ||
+      ariaLabel.includes('마이크') ||
       ariaLabel.includes('중지') ||
       ariaLabel.includes('중단')
     ) {

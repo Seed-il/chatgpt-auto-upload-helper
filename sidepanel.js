@@ -646,6 +646,27 @@ async function runNextPipelineStep() {
 
 async function executeStep(promptText) {
   try {
+    // Before inserting the new prompt, check if the editor is already busy or not empty (Safety Gate)
+    const editorCheck = await sendMessageToChatGPT(pipelineState.tabId, { type: 'CHECK_EDITOR_EMPTY' });
+    if (editorCheck?.ok && !editorCheck.empty) {
+      setStatus('이전 프롬프트가 전송되어 입력창이 비워지기를 기다리는 중...', 'warning');
+      let waitClear = 0;
+      let cleared = false;
+      while (waitClear < 20000) { // Max 20 seconds wait
+        if (pipelineState.abort) return;
+        await sleep(500);
+        const doubleCheck = await sendMessageToChatGPT(pipelineState.tabId, { type: 'CHECK_EDITOR_EMPTY' });
+        if (doubleCheck?.ok && doubleCheck.empty) {
+          cleared = true;
+          break;
+        }
+        waitClear += 500;
+      }
+      if (!cleared) {
+        throw new Error('이전 프롬프트가 아직 전송되지 않았습니다. 입력창이 비워질 때까지 대기했으나 타임아웃되었습니다.');
+      }
+    }
+
     if (state.files.length > 0) {
       setStatus(getTranslation('statusPreparingImages', [String(state.files.length)]), '');
       const payload = await Promise.all(state.files.map(fileToPayload));
