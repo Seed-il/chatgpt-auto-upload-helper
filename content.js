@@ -197,11 +197,31 @@ function isGenerating() {
     'button[data-testid="stop-button"]',
     'button[aria-label*="Stop"]',
     'button[aria-label*="stop"]',
-    'button[aria-label*="중지"]'
+    'button[aria-label*="중지"]',
+    'button[aria-label*="중단"]',
+    'button[aria-label*="멈춤"]'
   ];
   for (const selector of stopIndicators) {
     const found = composer.querySelector(selector);
     if (found) return true;
+  }
+
+  // 1.5. Scoped check for stop buttons containing square rects inside the composer
+  const buttons = composer.querySelectorAll('button');
+  for (const btn of buttons) {
+    const rect = btn.querySelector('rect');
+    if (rect) {
+      const w = parseFloat(rect.getAttribute('width') || '0');
+      const h = parseFloat(rect.getAttribute('height') || '0');
+      // A stop button icon is a solid square (e.g. 10x10, 12x12, 16x16)
+      if (w >= 6 && w <= 24 && Math.abs(w - h) < 2) {
+        return true;
+      }
+    }
+    const svg = btn.querySelector('svg');
+    if (svg && svg.getAttribute('class')?.includes('stop')) {
+      return true;
+    }
   }
 
   // 2. Check if the send button is completely absent from the DOM, or disabled while the editor has text
