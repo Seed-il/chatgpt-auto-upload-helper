@@ -100,15 +100,20 @@ function findSendButton() {
     'button[aria-label*="send"]',
     'button[aria-label*="전송"]',
     'button[aria-label*="보내기"]',
-    'form button[type="submit"]',
-    '[data-testid="composer-background"] button:has(svg)'
+    'form button[type="submit"]'
   ];
   for (const selector of candidates) {
     const found = composer.querySelector(selector);
-    if (found) return found;
+    if (found) {
+      const label = found.getAttribute('aria-label') || '';
+      const testId = found.getAttribute('data-testid') || '';
+      if (!testId.includes('stop') && !label.includes('Stop') && !label.includes('중지')) {
+        return found;
+      }
+    }
   }
 
-  // Fallback: Look for a button with an SVG inside the composer, excluding attachment/voice keys
+  // Fallback: Look for a button with an SVG inside the composer, excluding attachment/voice/stop keys
   const buttons = composer.querySelectorAll('button');
   for (const btn of buttons) {
     const ariaLabel = btn.getAttribute('aria-label') || '';
@@ -117,10 +122,15 @@ function findSendButton() {
       testId.includes('clip') || 
       testId.includes('voice') || 
       testId.includes('attachment') ||
+      testId.includes('stop') ||
       ariaLabel.includes('Attach') || 
       ariaLabel.includes('voice') ||
+      ariaLabel.includes('stop') ||
+      ariaLabel.includes('Stop') ||
       ariaLabel.includes('첨부') ||
-      ariaLabel.includes('음성')
+      ariaLabel.includes('음성') ||
+      ariaLabel.includes('중지') ||
+      ariaLabel.includes('중단')
     ) {
       continue;
     }
@@ -139,6 +149,12 @@ function clickSendButton(btn) {
 function isGenerating() {
   const composer = document.querySelector('form, [data-testid="composer-background"]');
   if (!composer) return false;
+
+  // 0. Check if the message input textarea is disabled (Universal indicator of generation/busy state)
+  const editor = findPromptEditor();
+  if (editor && (editor.disabled || editor.hasAttribute('disabled'))) {
+    return true;
+  }
 
   // 1. Check if the stop button explicitly exists in the DOM
   const stopIndicators = [
