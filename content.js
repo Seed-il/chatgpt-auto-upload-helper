@@ -200,9 +200,13 @@ function isGenerating() {
     }
   }
 
-  // 3. Check if the send button is completely absent from the DOM or disabled
+  // 3. Check if the send button is completely absent from the DOM, or disabled while the editor has text
   const sendBtn = findSendButton();
-  if (!sendBtn || sendBtn.disabled) {
+  if (!sendBtn) {
+    return true;
+  }
+  const text = getEditorText(editor).trim();
+  if (sendBtn.disabled && text !== '') {
     return true;
   }
 
