@@ -104,20 +104,30 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 });
 
+function isActualEditor(el) {
+  const style = window.getComputedStyle(el);
+  const rect = el.getBoundingClientRect();
+  if (style.display === 'none' || style.visibility === 'hidden') {
+    return false;
+  }
+  if (style.opacity === '0' || rect.width <= 5 || rect.height <= 5) {
+    return false;
+  }
+  return true;
+}
+
 function findPromptEditor() {
   const composer = document.querySelector('form, [data-testid="composer-background"]');
   if (!composer) return null;
 
   const candidates = [
+    '#prompt-textarea',
     'textarea',
     '[contenteditable="true"][role="textbox"]',
     '[contenteditable="true"]'
   ];
   for (const selector of candidates) {
-    const found = [...composer.querySelectorAll(selector)].find((el) => {
-      const style = window.getComputedStyle(el);
-      return style.display !== 'none' && style.visibility !== 'hidden';
-    });
+    const found = [...composer.querySelectorAll(selector)].find(isActualEditor);
     if (found) return found;
   }
   return null;
@@ -240,22 +250,35 @@ function isVisible(element) {
 
 function insertText(editor, text, mode) {
   editor.focus();
-  const current = getEditorText(editor);
-  const next = mode === 'append' && current.trim() ? `${current}\n${text}` : text;
 
   if (editor instanceof HTMLTextAreaElement || editor instanceof HTMLInputElement) {
+    const current = editor.value;
+    const next = mode === 'append' && current.trim() ? `${current}\n${text}` : text;
     const descriptor = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value') ||
       Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value');
     descriptor?.set?.call(editor, next);
+    editor.dispatchEvent(new InputEvent('input', {
+      bubbles: true,
+      inputType: 'insertText',
+      data: text
+    }));
   } else {
-    editor.textContent = next;
+    // For contenteditable div: select all contents and insert via execCommand to update React state
+    const selection = window.getSelection();
+    const range = document.createRange();
+    range.selectNodeContents(editor);
+    selection.removeAllRanges();
+    selection.addRange(range);
+    
+    if (mode === 'append') {
+      const current = editor.textContent || '';
+      const next = current.trim() ? `${current}\n${text}` : text;
+      document.execCommand('insertText', false, next);
+    } else {
+      document.execCommand('insertText', false, text);
+    }
   }
 
-  editor.dispatchEvent(new InputEvent('input', {
-    bubbles: true,
-    inputType: 'insertText',
-    data: text
-  }));
   editor.dispatchEvent(new Event('change', { bubbles: true }));
 }
 
