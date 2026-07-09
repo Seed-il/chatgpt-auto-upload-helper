@@ -91,7 +91,7 @@ function findFileInput() {
 }
 
 function findSendButton() {
-  const composer = document.querySelector('form, [data-testid="composer-background"], [class*="composer"]');
+  const composer = document.querySelector('form, [data-testid="composer-background"]');
   if (!composer) return null;
 
   const candidates = [
@@ -137,7 +137,7 @@ function clickSendButton(btn) {
 }
 
 function isGenerating() {
-  const composer = document.querySelector('form, [data-testid="composer-background"], [class*="composer"]');
+  const composer = document.querySelector('form, [data-testid="composer-background"]');
   if (!composer) return false;
 
   // 1. Check if the stop button explicitly exists in the DOM
@@ -168,9 +168,9 @@ function isGenerating() {
     }
   }
 
-  // 3. Check if the send button is completely absent from the DOM
+  // 3. Check if the send button is completely absent from the DOM or disabled
   const sendBtn = findSendButton();
-  if (!sendBtn) {
+  if (!sendBtn || sendBtn.disabled) {
     return true;
   }
 
