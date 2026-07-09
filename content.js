@@ -179,7 +179,7 @@ function isGenerating() {
     return true;
   }
 
-  // 1. Check if the stop button explicitly exists in the DOM
+  // 1. Check if the stop button explicitly exists inside the composer
   const stopIndicators = [
     'button[data-testid="stop-button"]',
     'button[aria-label*="Stop"]',
@@ -191,12 +191,12 @@ function isGenerating() {
     'button svg rect[width="16"]'
   ];
   for (const selector of stopIndicators) {
-    const found = document.querySelector(selector);
+    const found = composer.querySelector(selector);
     if (found) return true;
   }
 
-  // 2. Check if any button has a square icon (stop button)
-  const buttons = document.querySelectorAll('button');
+  // 2. Check if any button inside the composer has a square icon (stop button)
+  const buttons = composer.querySelectorAll('button');
   for (const btn of buttons) {
     if (btn.querySelector('rect')) return true;
     const svg = btn.querySelector('svg');
