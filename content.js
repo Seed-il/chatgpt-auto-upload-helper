@@ -46,11 +46,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
                   sendResponse({ ok: false, error: e.message });
                 }
               }, 500);
-            } else if (waitBtnCount < 3600) { // Max 180 seconds (3600 * 50ms)
-              waitBtnCount++;
-              setTimeout(clickWhenReady, 50);
             } else {
-              sendResponse({ ok: false, error: '전송 버튼이 활성화되지 않았습니다. 이미지 업로드 시간이 초과되었습니다 (180초).' });
+              const timeoutSec = message.timeout || 60;
+              const maxWaitCount = timeoutSec * 20;
+              if (waitBtnCount < maxWaitCount) {
+                waitBtnCount++;
+                setTimeout(clickWhenReady, 50);
+              } else {
+                sendResponse({ ok: false, error: `전송 버튼이 활성화되지 않았습니다. 이미지 업로드 시간이 초과되었습니다 (${timeoutSec}초).` });
+              }
             }
           } catch (e) {
             sendResponse({ ok: false, error: e.message });

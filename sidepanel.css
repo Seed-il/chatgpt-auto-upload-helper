@@ -273,6 +273,19 @@ footer { color: #aeb7c8; min-height: 18px; font-size: 12px; padding: 2px; }
   line-height: 1;
 }
 
+.pro-lock-badge {
+  background: linear-gradient(135deg, #ffe066 0%, #f5a623 100%);
+  color: #0d1117;
+  font-size: 8px;
+  font-weight: 800;
+  padding: 2px 4px;
+  border-radius: 3px;
+  margin-left: 6px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
 /* Footer elements */
 .footer-content {
   display: flex;

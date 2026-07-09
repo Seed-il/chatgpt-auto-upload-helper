@@ -5,7 +5,8 @@ const DEFAULT_SETTINGS = {
   includeAspectRule: true,
   includeCommonPrompt: true,
   autoSendPrompt: false,
-  userLanguage: ''
+  userLanguage: '',
+  uploadTimeout: 60
 };
 
 // Supabase Configuration - Fill in your Supabase project details here
@@ -48,6 +49,7 @@ const includeCommonPrompt = $('#includeCommonPrompt');
 const settingsPreview = $('#settingsPreview');
 const autoSendPrompt = $('#autoSendPrompt');
 const langSelect = $('#langSelect');
+const uploadTimeout = $('#uploadTimeout');
 
 init();
 
@@ -190,9 +192,24 @@ function bindEvents() {
     await changeLanguage(event.target.value);
   });
 
-  [aspectRatio, commonPrompt, includeReferenceRule, includeAspectRule, includeCommonPrompt, autoSendPrompt].forEach((element) => {
+  [aspectRatio, commonPrompt, includeReferenceRule, includeAspectRule, includeCommonPrompt, autoSendPrompt, uploadTimeout].forEach((element) => {
     element.addEventListener('input', saveSettingsFromUI);
     element.addEventListener('change', saveSettingsFromUI);
+  });
+
+  uploadTimeout.addEventListener('change', (event) => {
+    if (!state.isPro && (event.target.value === '180' || event.target.value === '300')) {
+      event.target.value = '60';
+      state.settings.uploadTimeout = 60;
+      chrome.storage.local.set({ settings: state.settings });
+      setStatus(getTranslation('proFeatureAlert'), 'error');
+      
+      let checkoutUrl = LEMON_SQUEEZY_URL;
+      if (state.user && state.user.id) {
+        checkoutUrl += `?checkout[custom][user_id]=${encodeURIComponent(state.user.id)}&checkout[email]=${encodeURIComponent(state.user.email)}`;
+      }
+      window.open(checkoutUrl, '_blank');
+    }
   });
 
   // Auth and Bypass buttons
@@ -227,6 +244,7 @@ function hydrateSettingsUI() {
   includeAspectRule.checked = state.settings.includeAspectRule;
   includeCommonPrompt.checked = state.settings.includeCommonPrompt;
   autoSendPrompt.checked = state.settings.autoSendPrompt;
+  uploadTimeout.value = String(state.settings.uploadTimeout || 60);
 }
 
 async function saveSettingsFromUI() {
@@ -237,7 +255,8 @@ async function saveSettingsFromUI() {
     includeAspectRule: includeAspectRule.checked,
     includeCommonPrompt: includeCommonPrompt.checked,
     autoSendPrompt: autoSendPrompt.checked,
-    userLanguage: langSelect.value
+    userLanguage: langSelect.value,
+    uploadTimeout: parseInt(uploadTimeout.value, 10) || 60
   };
   await chrome.storage.local.set({ settings: state.settings });
   updateSettingsPreview();
@@ -369,7 +388,8 @@ async function insertPromptIntoChatGPT(prompt, index, overrideAutoSend = null) {
       type: 'INSERT_PROMPT',
       prompt: finalPrompt,
       mode: getInsertMode(),
-      autoSend: shouldAutoSend
+      autoSend: shouldAutoSend,
+      timeout: state.settings.uploadTimeout || 60
     });
     if (!response?.ok) throw new Error(response?.error || getTranslation('statusNoEditor'));
     setStatus(getTranslation('statusApplyPrompt', [String(index + 1)]), 'success');
@@ -689,7 +709,8 @@ async function executeStep(promptText) {
       type: 'INSERT_PROMPT',
       prompt: finalPrompt,
       mode: getInsertMode(),
-      autoSend: true // Sequences must auto-submit
+      autoSend: true, // Sequences must auto-submit
+      timeout: state.settings.uploadTimeout || 60
     });
 
     if (!response?.ok) throw new Error(response?.error || 'Failed to insert prompt.');
@@ -873,6 +894,9 @@ function updateUserProfileUI() {
   const proBadge = $('#proBadge');
   const upgradeBtn = $('#upgradeButton');
   const runSeqBtn = $('#runSequenceButton');
+  const timeoutProLock = $('#timeoutProLock');
+  const timeoutOption3 = uploadTimeout.querySelector('option[value="180"]');
+  const timeoutOption5 = uploadTimeout.querySelector('option[value="300"]');
 
   if (state.user) {
     userProfile.textContent = `${state.user.name} (${state.user.email})`;
@@ -882,10 +906,23 @@ function updateUserProfileUI() {
       proBadge.style.display = 'inline-block';
       upgradeBtn.style.display = 'none';
       runSeqBtn.textContent = getTranslation('runSequenceBtn');
+      if (timeoutProLock) timeoutProLock.style.display = 'none';
+      if (timeoutOption3) timeoutOption3.disabled = false;
+      if (timeoutOption5) timeoutOption5.disabled = false;
     } else {
       proBadge.style.display = 'none';
       upgradeBtn.style.display = 'inline-block';
       runSeqBtn.textContent = '🔒 ' + getTranslation('runSequenceBtn');
+      if (timeoutProLock) timeoutProLock.style.display = 'inline-block';
+      if (timeoutOption3) timeoutOption3.disabled = true;
+      if (timeoutOption5) timeoutOption5.disabled = true;
+
+      // Revert if Pro option selected while not Pro
+      if (uploadTimeout.value === '180' || uploadTimeout.value === '300') {
+        uploadTimeout.value = '60';
+        state.settings.uploadTimeout = 60;
+        chrome.storage.local.set({ settings: state.settings });
+      }
     }
   } else {
     footerProfile.style.display = 'none';

@@ -77,6 +77,21 @@
   "aspectRatioHint": {
     "message": "Choosing the 16:9 ratio directly in ChatGPT's UI once is also more consistent."
   },
+  "uploadTimeoutLabel": {
+    "message": "Image Upload Wait Time"
+  },
+  "timeoutOption1": {
+    "message": "1 Minute (Default)"
+  },
+  "timeoutOption3": {
+    "message": "3 Minutes"
+  },
+  "timeoutOption5": {
+    "message": "5 Minutes"
+  },
+  "proFeatureAlert": {
+    "message": "This option is only available for PRO license users."
+  },
   "promptCardsTitle": {
     "message": "3. Prompt Cards"
   },

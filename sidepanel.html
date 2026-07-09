@@ -96,6 +96,18 @@
         <option value="3:2" data-i18n="aspectRatio3_2">3:2 · Photo Horizontal</option>
       </select>
 
+      <div class="timeout-setting-container" style="margin-top: 12px; display: flex; flex-direction: column;">
+        <label for="uploadTimeout" class="label" style="display: flex; align-items: center; justify-content: space-between;">
+          <span data-i18n="uploadTimeoutLabel">Image Upload Wait Time</span>
+          <span id="timeoutProLock" class="pro-lock-badge">PRO</span>
+        </label>
+        <select id="uploadTimeout" aria-label="Image Upload Wait Time">
+          <option value="60" selected data-i18n="timeoutOption1">1 Minute (Default)</option>
+          <option value="180" data-i18n="timeoutOption3">3 Minutes (Pro)</option>
+          <option value="300" data-i18n="timeoutOption5">5 Minutes (Pro)</option>
+        </select>
+      </div>
+
       <label for="commonPrompt" class="label common-label">
         <span data-i18n="commonPromptLabel" style="color: inherit;">Common Prompt</span>
         <span data-i18n="optionalLabel">Optional</span>
