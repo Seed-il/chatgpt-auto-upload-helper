@@ -105,15 +105,17 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 });
 
 function findPromptEditor() {
+  const composer = document.querySelector('form, [data-testid="composer-background"]');
+  if (!composer) return null;
+
   const candidates = [
-    'textarea[placeholder*="Message"]',
     'textarea',
     '[contenteditable="true"][role="textbox"]',
     '[contenteditable="true"]'
   ];
   for (const selector of candidates) {
-    const found = [...document.querySelectorAll(selector)].find(isVisible);
-    if (found) return found;
+    const found = composer.querySelector(selector);
+    if (found && isVisible(found)) return found;
   }
   return null;
 }
@@ -166,9 +168,14 @@ function isGenerating() {
   const composer = document.querySelector('form, [data-testid="composer-background"]');
   if (!composer) return false;
 
-  // 0. Check if the message input textarea is disabled (Universal indicator of generation/busy state)
   const editor = findPromptEditor();
-  if (editor && (editor.disabled || editor.hasAttribute('disabled'))) {
+  if (!editor) {
+    // If composer exists but no editor is found inside, assume transition/loading state
+    return true;
+  }
+
+  // 0. Check if the message input textarea is disabled (Universal indicator of generation/busy state)
+  if (editor.disabled || editor.hasAttribute('disabled')) {
     return true;
   }
 
