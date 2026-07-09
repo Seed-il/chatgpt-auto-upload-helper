@@ -148,39 +148,6 @@ function findSendButton() {
       }
     }
   }
-
-  // Fallback: Look for a button with an SVG inside the composer, excluding attachment/voice/stop keys
-  const buttons = composer.querySelectorAll('button');
-  for (const btn of buttons) {
-    const ariaLabel = btn.getAttribute('aria-label') || '';
-    const testId = btn.getAttribute('data-testid') || '';
-    if (
-      testId.includes('clip') || 
-      testId.includes('voice') || 
-      testId.includes('speech') || 
-      testId.includes('audio') || 
-      testId.includes('microphone') || 
-      testId.includes('attachment') ||
-      testId.includes('stop') ||
-      ariaLabel.includes('Attach') || 
-      ariaLabel.includes('voice') ||
-      ariaLabel.includes('speech') ||
-      ariaLabel.includes('audio') ||
-      ariaLabel.includes('microphone') ||
-      ariaLabel.includes('stop') ||
-      ariaLabel.includes('Stop') ||
-      ariaLabel.includes('첨부') ||
-      ariaLabel.includes('음성') ||
-      ariaLabel.includes('마이크') ||
-      ariaLabel.includes('중지') ||
-      ariaLabel.includes('중단')
-    ) {
-      continue;
-    }
-    if (btn.querySelector('svg')) {
-      return btn;
-    }
-  }
   return null;
 }
 
