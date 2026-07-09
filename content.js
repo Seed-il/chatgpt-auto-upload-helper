@@ -114,7 +114,10 @@ function findPromptEditor() {
     '[contenteditable="true"]'
   ];
   for (const selector of candidates) {
-    const found = composer.querySelector(selector);
+    const found = [...composer.querySelectorAll(selector)].find((el) => {
+      const style = window.getComputedStyle(el);
+      return style.display !== 'none' && style.visibility !== 'hidden';
+    });
     if (found) return found;
   }
   return null;
