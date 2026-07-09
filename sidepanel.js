@@ -605,12 +605,16 @@ function togglePipeline() {
   }
 }
 
-function abortPipeline() {
+function abortPipeline(customErrorMsg) {
   if (!pipelineState.running) return;
   pipelineState.abort = true;
   pipelineState.running = false;
   updatePipelineUI(false);
-  setStatus(getTranslation('statusSequenceCancelled'), 'error');
+  if (customErrorMsg) {
+    setStatus(customErrorMsg, 'error');
+  } else {
+    setStatus(getTranslation('statusSequenceCancelled'), 'error');
+  }
 }
 
 async function runNextPipelineStep() {
@@ -695,8 +699,7 @@ async function executeStep(promptText) {
     pipelineState.currentIndex++;
     setTimeout(runNextPipelineStep, 1000);
   } catch (error) {
-    setStatus(error.message, 'error');
-    abortPipeline();
+    abortPipeline(error.message);
   }
 }
 
