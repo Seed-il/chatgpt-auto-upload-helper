@@ -92,20 +92,38 @@ function findFileInput() {
 
 function findSendButton() {
   const composer = document.querySelector('form, [data-testid="composer-background"], [class*="composer"]');
-  const container = composer || document;
+  if (!composer) return null;
 
   const candidates = [
     'button[data-testid="send-button"]',
-    'button[aria-label="Send message"]',
+    'button[aria-label*="Send"]',
+    'button[aria-label*="send"]',
+    'button[aria-label*="전송"]',
+    'button[aria-label*="보내기"]',
     'form button[type="submit"]',
     '[data-testid="composer-background"] button:has(svg)'
   ];
   for (const selector of candidates) {
-    const found = container.querySelector(selector);
+    const found = composer.querySelector(selector);
     if (found) return found;
   }
-  const buttons = container.querySelectorAll('button');
+
+  // Fallback: Look for a button with an SVG inside the composer, excluding attachment/voice keys
+  const buttons = composer.querySelectorAll('button');
   for (const btn of buttons) {
+    const ariaLabel = btn.getAttribute('aria-label') || '';
+    const testId = btn.getAttribute('data-testid') || '';
+    if (
+      testId.includes('clip') || 
+      testId.includes('voice') || 
+      testId.includes('attachment') ||
+      ariaLabel.includes('Attach') || 
+      ariaLabel.includes('voice') ||
+      ariaLabel.includes('첨부') ||
+      ariaLabel.includes('음성')
+    ) {
+      continue;
+    }
     if (btn.querySelector('svg')) {
       return btn;
     }
@@ -119,6 +137,9 @@ function clickSendButton(btn) {
 }
 
 function isGenerating() {
+  const composer = document.querySelector('form, [data-testid="composer-background"], [class*="composer"]');
+  if (!composer) return false;
+
   // 1. Check if the stop button explicitly exists in the DOM
   const stopIndicators = [
     'button[data-testid="stop-button"]',
@@ -148,7 +169,6 @@ function isGenerating() {
   }
 
   // 3. Check if the send button is completely absent from the DOM
-  // We use findSendButton() to align detection logic.
   const sendBtn = findSendButton();
   if (!sendBtn) {
     return true;
