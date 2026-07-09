@@ -19,3 +19,7 @@ yarn-error.log*
 
 # Database & Local Settings
 .supabase/
+
+# HAR archives
+*.har
+chatgpt.com.har
