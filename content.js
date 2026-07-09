@@ -115,7 +115,7 @@ function findPromptEditor() {
   ];
   for (const selector of candidates) {
     const found = composer.querySelector(selector);
-    if (found && isVisible(found)) return found;
+    if (found) return found;
   }
   return null;
 }
