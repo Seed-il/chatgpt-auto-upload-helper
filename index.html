@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChatGPT Auto Upload Helper - Chrome Extension</title>
+  <style>
+    :root {
+      --bg: #0a0d14;
+      --panel: #111622;
+      --border: #23304a;
+      --text: #edf0f5;
+      --text-muted: #8fa0c0;
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --accent: #f5a623;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(79, 70, 229, 0.3);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Product Features */
+    .features {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-bottom: 60px;
+    }
+
+    .feature-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .feature-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(17, 22, 34, 0.8) 100%);
+      border: 1px solid var(--primary);
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 60px;
+    }
+
+    .cta-title {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+    }
+
+    .cta-desc {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--primary);
+      color: #fff;
+      padding: 12px 30px;
+      font-weight: 600;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background-color 0.2s;
+    }
+
+    .btn:hover {
+      background-color: var(--primary-hover);
+    }
+
+    /* Tabs/Documents Section */
+    .doc-section {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 30px;
+    }
+
+    .doc-nav {
+      display: flex;
+      gap: 10px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      overflow-x: auto;
+    }
+
+    .doc-tab {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-weight: 600;
+      cursor: pointer;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .doc-tab.active {
+      background: rgba(79, 70, 229, 0.15);
+      color: var(--text);
+      border: 1px solid rgba(79, 70, 229, 0.3);
+    }
+
+    .doc-content {
+      display: none;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .doc-content.active {
+      display: block;
+    }
+
+    .doc-content h4 {
+      color: var(--text);
+      margin: 20px 0 10px;
+      font-size: 1.1rem;
+    }
+
+    .doc-content p, .doc-content ul {
+      margin-bottom: 12px;
+    }
+
+    .doc-content ul {
+      padding-left: 20px;
+    }
+
+    .doc-content li {
+      margin-bottom: 6px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <img src="icon128.png" alt="ChatGPT Auto Upload Helper Logo" class="logo" />
+    <h1>ChatGPT Auto Upload Helper</h1>
+    <p class="subtitle">다중 이미지와 종횡비 매개변수를 유지하며 대량의 프롬프트 카드를 ChatGPT에 순차적으로 자동 주입하는 크롬 확장 프로그램</p>
+  </header>
+
+  <section class="features">
+    <div class="feature-card">
+      <h3>🚀 순차적 자동 전송 (Sequential Pipeline)</h3>
+      <p>1번 프롬프트 실행 완료(텍스트 및 이미지 생성 종료)를 완벽하게 실시간 감지하여, 대기 중이던 2번 프롬프트와 참조 이미지들을 자동으로 다음 턴에 연속 주입 및 실행합니다.</p>
+    </div>
+    <div class="feature-card">
+      <h3>📸 완벽한 이미지/비율 일관성 유지</h3>
+      <p>매 단계 실행 시 고정적으로 사용될 캐릭터 참조 이미지나 배경 이미지를 자동으로 첨부하고, 원하는 생성 비율(16:9, 9:16 등) 규칙 및 공통 스타일 프롬프트를 자동으로 뒤에 결합해 줍니다.</p>
+    </div>
+    <div class="feature-card">
+      <h3>⚙️ 프리미엄 제어 보장 (PRO 전용)</h3>
+      <p>다량의 고해상도 첨부 파일을 처리하는 사용자를 위해 이미지 업로드 대기 한도를 1분부터 3분, 5분까지 대폭 늘릴 수 있어 대형 시퀀스 작업도 멈춤 현상 없이 안전하게 처리할 수 있습니다.</p>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2 class="cta-title">프로 버전 라이선스로 업로드 자동화를 완료하세요</h2>
+    <p class="cta-desc">Supabase 인증 계정을 통해 PRO 멤버십을 갱신하고 고급 업로드 제어 권한을 즉시 확보하세요.</p>
+    <a href="#" class="btn" onclick="alert('본 제품은 크롬 웹 스토어를 통해 설치 및 활성화하는 크롬 확장 프로그램입니다. 라이선스 갱신은 확장 프로그램 내의 Get Pro 버튼을 통해 진행해 주시기 바랍니다.'); return false;">라이선스 요금제 확인</a>
+  </section>
+
+  <section class="doc-section">
+    <div class="doc-nav">
+      <button class="doc-tab active" onclick="switchTab('terms')">이용약관</button>
+      <button class="doc-tab" onclick="switchTab('privacy')">개인정보처리방침</button>
+      <button class="doc-tab" onclick="switchTab('refund')">환불 및 환원 규정</button>
+    </div>
+
+    <!-- Terms of Service -->
+    <div id="terms" class="doc-content active">
+      <h4>제 1 조 (목적)</h4>
+      <p>본 약관은 본 크롬 확장 프로그램(이하 '서비스')을 이용함에 있어 서비스 제공자와 이용자의 권리, 의무 및 책임 사항을 규정함을 목적으로 합니다.</p>
+
+      <h4>제 2 조 (서비스의 내용)</h4>
+      <p>본 서비스는 사용자가 입력한 프롬프트 카드를 ChatGPT 웹 화면 상에 자동으로 기입 및 전송 대행하고, 참조 이미지 파일의 업로드 프로세스를 지원하는 유틸리티 크롬 확장 프로그램입니다.</p>
+
+      <h4>제 3 조 (유료 서비스 및 구독 라이선스)</h4>
+      <ul>
+        <li>본 서비스는 기본 무료 기능을 제공하며, 이미지 대기 시간 추가 연장 등 일부 프리미엄 기능은 PRO 요금제를 구독한 계정(이하 'PRO 라이선스')에 한해 제공됩니다.</li>
+        <li>PRO 라이선스 결제 및 관리는 공식 결제 대행사(Merchant of Record)인 Lemon Squeezy를 통해 엄격하고 안전하게 수행됩니다.</li>
+      </ul>
+
+      <h4>제 4 조 (이용자의 의무)</h4>
+      <p>이용자는 ChatGPT 서비스의 자체 가이드라인 및 OpenAI의 정책을 준수해야 하며, 본 확장 프로그램을 비정상적인 매크로 수단으로 남용하여 타인의 서비스 이용을 방해해서는 안 됩니다.</p>
+    </div>
+
+    <!-- Privacy Policy -->
+    <div id="privacy" class="doc-content">
+      <h4>1. 개인정보 수집 항목 및 방법</h4>
+      <p>본 서비스는 기본적으로 사용자가 ChatGPT에 전송하는 프롬프트 문장, 민감 정보, 입력 파일을 서비스 제공자의 원격 서버로 전송하여 수집하지 않습니다. 모든 데이터 처리는 이용자의 로컬 웹 브라우저 샌드박스 내부에서만 안전하게 실행됩니다.</p>
+      
+      <h4>2. 회원 가입 및 인증 데이터 처리</h4>
+      <p>구독 권한을 식별하기 위해 구글 로그인(Google Sign-In) 연동을 통한 이메일 주소 및 고유 UUID 값을 Supabase 인증 DB를 거쳐 안전하게 검증합니다. 수집된 이메일 정보는 오직 라이선스 유효성 확인 목적으로만 사용됩니다.</p>
+
+      <h4>3. 타사 쿠키 및 외부 전송 금지</h4>
+      <p>본 서비스는 마케팅 목적의 타사 추적 픽셀이나 악성 애드웨어를 포함하지 않으며, 결제 내역 확인을 위해 안전한 Supabase 백엔드 웹훅 프로토콜만 통신합니다.</p>
+    </div>
+
+    <!-- Refund Policy -->
+    <div id="refund" class="doc-content">
+      <h4>1. 디지털 상품의 환불 불가 원칙</h4>
+      <p>본 서비스가 제공하는 PRO 라이선스는 결제 완료 직후 계정에 즉시 라이선스가 영구/구독 적용되어 효력이 활성화되는 **디지털 소프트웨어 및 전자적 무형 상품**입니다. 따라서 대한민국 전자상거래법 및 국제 표준 디지털 재화 환불 규정에 따라, 단순 변심으로 인한 환불 및 결제 취소는 원칙적으로 불가능합니다.</p>
+
+      <h4>2. 기술적 예외 환불 규정</h4>
+      <ul>
+        <li>구매 후 **7일 이내**에 프로그램의 치명적인 결함이나 에러로 인해 정상적인 기능 작동이 불가능하고, 서비스 제공자가 보완 패치를 제공하지 못하는 객명한 기술적 결함이 증명된 경우에는 예외적으로 환불을 요청하실 수 있습니다.</li>
+        <li>이 경우 레몬스퀴지 고객 센터 또는 지원 계정을 통해 환불 사유 및 재현 단계 스크린샷과 함께 결제 영수증 번호를 제출해 주시면 적극적으로 검토하여 조치해 드립니다.</li>
+      </ul>
+
+      <h4>3. 구독 취소 (Cancellation)</h4>
+      <p>구독형 라이선스의 경우 언제든지 마이페이지 또는 레몬스퀴지 결제 관리 이메일을 통해 다가오는 다음 갱신 주기의 결제를 자유롭게 해지(구독 취소)할 수 있습니다.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 ChatGPT Auto Upload Helper. All rights reserved.</p>
+  </footer>
+</div>
+
+<script>
+  function switchTab(tabId) {
+    document.querySelectorAll('.doc-tab').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.doc-content').forEach(content => content.classList.remove('active'));
+
+    const activeBtn = Array.from(document.querySelectorAll('.doc-tab')).find(btn => btn.innerText.includes(
+      tabId === 'terms' ? '이용약관' : (tabId === 'privacy' ? '개인정보처리방침' : '환불')
+    ));
+    if (activeBtn) activeBtn.classList.add('active');
+
+    const content = document.getElementById(tabId);
+    if (content) content.classList.add('active');
+  }
+</script>
+</body>
+</html>
