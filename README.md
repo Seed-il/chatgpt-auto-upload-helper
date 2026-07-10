@@ -48,7 +48,7 @@ ChatGPT Auto Upload Helper offers a premium upgrade powered by **Lemon Squeezy**
 ## Privacy & Support
 
 - **Privacy Policy**: We do not collect or store your private images. All reference images are processed locally in your browser memory.
-- **Support**: For billing inquiries, feedback, or technical support, please contact: `support@seedpearl.com`
+- **Support**: For billing inquiries, feedback, or technical support, please open an issue on our [GitHub Issues](https://github.com/Seed-il/chatgpt-auto-upload-helper/issues) page.
 
 ---
 
@@ -71,4 +71,4 @@ ChatGPT 대화에서 반복적인 이미지 생성 작업을 자동화하고 보
 ## 개인정보 보호 & 기술 지원
 
 - **개인정보 보호 정책**: 유저의 개인 이미지를 수집하거나 서버에 저장하지 않습니다. 모든 업로드 이미지는 브라우저 로컬 메모리 내에서 안전하게 처리됩니다.
-- **고객 지원**: 결제 문의, 피드백 및 기술 지원이 필요하신 경우 `support@seedpearl.com`으로 연락해 주세요.
+- **고객 지원**: 결제 문의, 피드백 및 기술 지원이 필요하신 경우 [GitHub Issues](https://github.com/Seed-il/chatgpt-auto-upload-helper/issues)를 통해 문의를 남겨주세요.
