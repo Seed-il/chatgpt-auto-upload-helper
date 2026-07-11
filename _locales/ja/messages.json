@@ -77,6 +77,21 @@
   "aspectRatioHint": {
     "message": "ChatGPTの画面で16:9比率を直接一度選択しておくことでも、より一貫性が得られます。"
   },
+  "uploadTimeoutLabel": {
+    "message": "画像アップロード待機時間"
+  },
+  "timeoutOption1": {
+    "message": "1分（デフォルト）"
+  },
+  "timeoutOption3": {
+    "message": "3分"
+  },
+  "timeoutOption5": {
+    "message": "5分"
+  },
+  "proFeatureAlert": {
+    "message": "このオプションはPROライセンスユーザーのみ利用可能です。"
+  },
   "promptCardsTitle": {
     "message": "3. プロンプトカード"
   },

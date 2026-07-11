@@ -77,6 +77,21 @@
   "aspectRatioHint": {
     "message": "直接在 ChatGPT 的界面中选择一次 16:9 比例，也会使生成更具一致性。"
   },
+  "uploadTimeoutLabel": {
+    "message": "图片上传等待时间"
+  },
+  "timeoutOption1": {
+    "message": "1分钟（默认）"
+  },
+  "timeoutOption3": {
+    "message": "3分钟"
+  },
+  "timeoutOption5": {
+    "message": "5分钟"
+  },
+  "proFeatureAlert": {
+    "message": "此选项仅限 PRO 授权用户使用。"
+  },
   "promptCardsTitle": {
     "message": "3. 提示词卡片"
   },

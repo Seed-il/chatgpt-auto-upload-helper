@@ -77,6 +77,21 @@
   "aspectRatioHint": {
     "message": "Elegir la relación 16:9 directamente en la interfaz de ChatGPT una vez también es más consistente."
   },
+  "uploadTimeoutLabel": {
+    "message": "Tiempo de espera de subida de imagen"
+  },
+  "timeoutOption1": {
+    "message": "1 minuto (Predeterminado)"
+  },
+  "timeoutOption3": {
+    "message": "3 minutos"
+  },
+  "timeoutOption5": {
+    "message": "5 minutos"
+  },
+  "proFeatureAlert": {
+    "message": "Esta opción solo está disponible para usuarios con licencia PRO."
+  },
   "promptCardsTitle": {
     "message": "3. Tarjetas de prompt"
   },

@@ -77,6 +77,21 @@
   "aspectRatioHint": {
     "message": "การเลือกอัตราส่วน 16:9 โดยตรงในอินเทอร์เฟซของ ChatGPT หนึ่งครั้งก็จะทำให้อัตราส่วนคงที่มากขึ้น"
   },
+  "uploadTimeoutLabel": {
+    "message": "เวลารออัปโหลดรูปภาพ"
+  },
+  "timeoutOption1": {
+    "message": "1 นาที (ค่าเริ่มต้น)"
+  },
+  "timeoutOption3": {
+    "message": "3 นาที"
+  },
+  "timeoutOption5": {
+    "message": "5 นาที"
+  },
+  "proFeatureAlert": {
+    "message": "ตัวเลือกนี้ใช้ได้เฉพาะผู้ใช้ใบอนุญาต PRO เท่านั้น"
+  },
   "promptCardsTitle": {
     "message": "3. การ์ดพรอมต์"
   },

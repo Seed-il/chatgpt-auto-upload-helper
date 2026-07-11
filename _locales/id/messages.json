@@ -77,6 +77,21 @@
   "aspectRatioHint": {
     "message": "Memilih rasio 16:9 langsung di antarmuka ChatGPT sekali juga akan membuat hasil lebih konsisten."
   },
+  "uploadTimeoutLabel": {
+    "message": "Waktu Tunggu Unggah Gambar"
+  },
+  "timeoutOption1": {
+    "message": "1 Menit (Default)"
+  },
+  "timeoutOption3": {
+    "message": "3 Menit"
+  },
+  "timeoutOption5": {
+    "message": "5 Menit"
+  },
+  "proFeatureAlert": {
+    "message": "Opsi ini hanya tersedia untuk pengguna lisensi PRO."
+  },
   "promptCardsTitle": {
     "message": "3. Kartu Prompt"
   },
