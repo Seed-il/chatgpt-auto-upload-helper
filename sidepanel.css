@@ -236,22 +236,6 @@ footer { color: #aeb7c8; min-height: 18px; font-size: 12px; padding: 2px; }
   color: #7f8ba2;
 }
 
-.debug-btn {
-  width: 100%;
-  background: #1e2531;
-  color: #ffb8b8;
-  border: 1px dashed #ef6060;
-  border-radius: 8px;
-  padding: 10px 16px;
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.debug-btn:hover {
-  background: #2b3547;
-}
 
 /* Header badge layout */
 .title-with-badge {

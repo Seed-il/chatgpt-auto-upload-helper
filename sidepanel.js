@@ -219,9 +219,8 @@ function bindEvents() {
     }
   });
 
-  // Auth and Bypass buttons
+  // Auth buttons
   $('#googleSignInButton').addEventListener('click', handleGoogleSignIn);
-  $('#debugBypassButton').addEventListener('click', handleDebugBypass);
   $('#signOutButton').addEventListener('click', logoutUser);
 
   // Upgrade button
@@ -862,9 +861,6 @@ async function handleGoogleSignIn() {
   }
 }
 
-async function handleDebugBypass() {
-  await loginUser('debug-admin-id-12345', 'Admin Tester', 'admin@chatgpttester.com', true);
-}
 
 async function loginUser(id, name, email, isPro) {
   state.isPro = isPro;

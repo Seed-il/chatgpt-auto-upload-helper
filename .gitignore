@@ -23,3 +23,7 @@ yarn-error.log*
 # HAR archives
 *.har
 chatgpt.com.har
+
+# Build output
+*.zip
+chatgpt-prompt-sidepanel.zip
