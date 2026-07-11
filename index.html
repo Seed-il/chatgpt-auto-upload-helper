@@ -301,6 +301,16 @@
     const content = document.getElementById(tabId);
     if (content) content.classList.add('active');
   }
+
+  function handleHash() {
+    const hash = window.location.hash.substring(1);
+    if (hash === 'privacy' || hash === 'terms' || hash === 'refund') {
+      switchTab(hash);
+    }
+  }
+
+  window.addEventListener('load', handleHash);
+  window.addEventListener('hashchange', handleHash);
 </script>
 </body>
 </html>
