@@ -12,8 +12,19 @@ const DEFAULT_SETTINGS = {
 // Supabase Configuration - Fill in your Supabase project details here
 const SUPABASE_URL = 'https://ojzgyqcsbzkgxmmmmvam.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qemd5cWNzYnprZ3htbW1tdmFtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzNDE2NTYsImV4cCI6MjA5ODkxNzY1Nn0.2B-LYUFYysF9bN3lni3iJRfmgeAcIeQcXsRVIFQqd_Q';
-// Lemon Squeezy Store URL - Replace with your actual checkout link
-const LEMON_SQUEEZY_URL = 'https://chatgpt-auto-upload.lemonsqueezy.com/checkout/buy/4630b190-de83-45b5-ad94-8c89596fbe72';
+// Polar.sh Store URL - Permanent Checkout Link
+const POLAR_CHECKOUT_URL = 'https://buy.polar.sh/polar_cl_pNQXEilQF3U7XFDQqakpWNgTHwbe1DkJvPKRJ2J5NAM';
+
+function getCheckoutUrl() {
+  let url = POLAR_CHECKOUT_URL;
+  if (state.user && state.user.id) {
+    const params = new URLSearchParams();
+    params.set('custom_field_data.user_id', state.user.id);
+    params.set('customer_email', state.user.email);
+    url += `?${params.toString()}`;
+  }
+  return url;
+}
 const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
 const state = {
@@ -204,11 +215,7 @@ function bindEvents() {
       chrome.storage.local.set({ settings: state.settings });
       setStatus(getTranslation('proFeatureAlert'), 'error');
       
-      let checkoutUrl = LEMON_SQUEEZY_URL;
-      if (state.user && state.user.id) {
-        checkoutUrl += `?checkout[custom][user_id]=${encodeURIComponent(state.user.id)}&checkout[email]=${encodeURIComponent(state.user.email)}`;
-      }
-      window.open(checkoutUrl, '_blank');
+      window.open(getCheckoutUrl(), '_blank');
     }
   });
 
@@ -221,11 +228,7 @@ function bindEvents() {
   const upgradeBtn = $('#upgradeButton');
   if (upgradeBtn) {
     upgradeBtn.addEventListener('click', () => {
-      let checkoutUrl = LEMON_SQUEEZY_URL;
-      if (state.user && state.user.id) {
-        checkoutUrl += `?checkout[custom][user_id]=${encodeURIComponent(state.user.id)}&checkout[email]=${encodeURIComponent(state.user.email)}`;
-      }
-      window.open(checkoutUrl, '_blank');
+      window.open(getCheckoutUrl(), '_blank');
     });
   }
 

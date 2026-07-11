@@ -21,10 +21,10 @@
 
 ## Subscription & Pricing
 
-ChatGPT Auto Upload Helper offers a premium upgrade powered by **Lemon Squeezy**:
-- **Pricing**: $9.99 / month (or custom store tier)
+ChatGPT Auto Upload Helper offers a premium upgrade powered by **Polar.sh**:
+- **Pricing**: $3.99 / month
 - **Features Unlocked**: Dynamic Template Variables, Sequential Generation Pipeline, Priority Support.
-- **Payment Processor**: Lemon Squeezy is the Merchant of Record (MoR) for all subscriptions, ensuring safe and secure checkout.
+- **Payment Processor**: Polar.sh is the Merchant of Record (MoR) for all subscriptions, ensuring safe and secure checkout.
 
 ---
 
@@ -41,7 +41,7 @@ ChatGPT Auto Upload Helper offers a premium upgrade powered by **Lemon Squeezy**
 
 - **Framework**: Chrome Extension Manifest V3 (Vanilla JS, HTML5, CSS3)
 - **Database & Authentication**: Supabase (PostgreSQL, Google OAuth 2.0)
-- **Billing Integration**: Lemon Squeezy Webhooks to Supabase Database
+- **Billing Integration**: Polar.sh Webhooks to Supabase Database
 
 ---
 
