@@ -246,6 +246,57 @@ function isGenerating() {
     if (document.querySelector(selector)) return true;
   }
 
+  // 4. Check for DALL-E / Image Generation loading states inside the latest assistant response
+  const assistantMessages = document.querySelectorAll('[data-message-author-role="assistant"], .agent-turn');
+  if (assistantMessages.length > 0) {
+    const lastMsg = assistantMessages[assistantMessages.length - 1];
+    
+    // Check if DALL-E was invoked or image block is present
+    const hasDalle = lastMsg.textContent.includes('DALL·E') || 
+                     lastMsg.textContent.includes('DALL-E') || 
+                     lastMsg.querySelector('[class*="dalle"]') ||
+                     lastMsg.querySelector('[data-testid*="dalle"]');
+                     
+    if (hasDalle) {
+      // Look for active loading animation classes or elements (pulse animations, spinners, loading indicators)
+      const hasLoader = !!(
+        lastMsg.querySelector('.animate-pulse') ||
+        lastMsg.querySelector('[class*="loading"]') ||
+        lastMsg.querySelector('[class*="spinner"]') ||
+        lastMsg.querySelector('svg[class*="animate-spin"]') ||
+        lastMsg.querySelector('[role="status"]') ||
+        lastMsg.querySelector('[aria-busy="true"]')
+      );
+      if (hasLoader) {
+        return true;
+      }
+
+      // Check if there are any image elements inside the message block
+      const imgs = lastMsg.querySelectorAll('img');
+      let foundLargeImg = false;
+      if (imgs.length > 0) {
+        for (const img of imgs) {
+          // Skip small avatars/icons by checking their layout size
+          const rect = img.getBoundingClientRect();
+          const isLarge = rect.width > 40 || rect.height > 40 || img.naturalWidth > 40;
+          if (isLarge) {
+            foundLargeImg = true;
+            // If the generated image is not yet fully loaded or has a width of 0, it is still rendering
+            if (!img.complete || img.naturalWidth === 0) {
+              return true;
+            }
+          }
+        }
+      }
+      
+      // If DALL-E was triggered but we haven't found any large generated images yet,
+      // it means it's still in the early generation or placeholder phase.
+      if (!foundLargeImg) {
+        return true;
+      }
+    }
+  }
+
   return false;
 }
 
