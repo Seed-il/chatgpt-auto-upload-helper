@@ -735,11 +735,20 @@ async function waitForGenerationToComplete() {
     if (pipelineState.abort) return;
     try {
       const response = await chrome.tabs.sendMessage(pipelineState.tabId, { type: 'CHECK_GENERATING' });
+      
+      // If generation immediately failed due to a ChatGPT system error
+      if (response?.failed) {
+        throw new Error(response.errorReason || 'ChatGPT 이미지 생성 오류가 감지되었습니다.');
+      }
+      
       if (response?.generating) {
         started = true;
         break;
       }
     } catch (e) {
+      if (e.message.includes('ChatGPT') || e.message.includes('DALL-E')) {
+        throw e; // Bubble up our custom error
+      }
       // Ignore message errors during startup transitions
     }
     await sleep(250);
@@ -748,17 +757,31 @@ async function waitForGenerationToComplete() {
 
   if (!started) {
     console.warn('Generation did not start within 10 seconds. Proceeding to avoid lockup.');
-    return;
   }
 
   // 2. Wait for generation to COMPLETE (isGenerating === false)
   // We require 3 consecutive false checks (1.5 seconds) to confirm it is actually idle,
   // preventing premature triggers during DALL-E tool-call transitions.
   let falseConsecutiveCount = 0;
+  let totalElapsedTime = 0;
+  const maxTimeoutMs = (state.settings.uploadTimeout || 60) * 1000;
+  
   while (true) {
     if (pipelineState.abort) return;
+    
+    // Safety Timeout (Option B)
+    if (totalElapsedTime > maxTimeoutMs) {
+      throw new Error(`이미지 생성 대기 시간이 초과되었습니다 (${state.settings.uploadTimeout}초).`);
+    }
+    
     try {
       const response = await chrome.tabs.sendMessage(pipelineState.tabId, { type: 'CHECK_GENERATING' });
+      
+      // Explicit ChatGPT DALL-E error detection (Option A)
+      if (response?.failed) {
+        throw new Error(response.errorReason || 'ChatGPT 이미지 생성 오류가 감지되었습니다.');
+      }
+      
       if (!response?.generating) {
         falseConsecutiveCount++;
         if (falseConsecutiveCount >= 3) {
@@ -768,10 +791,20 @@ async function waitForGenerationToComplete() {
         falseConsecutiveCount = 0;
       }
     } catch (e) {
+      // Bubble up our custom errors (ChatGPT failure, timeouts, etc.)
+      if (
+        e.message.includes('오류') || 
+        e.message.includes('초과') || 
+        e.message.includes('ChatGPT') || 
+        e.message.includes('DALL-E')
+      ) {
+        throw e;
+      }
       // Handle potential disconnected port errors if page is refreshing
       break;
     }
     await sleep(500);
+    totalElapsedTime += 500;
   }
 }
 

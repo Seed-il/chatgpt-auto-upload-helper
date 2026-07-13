@@ -88,7 +88,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 
   if (message?.type === 'CHECK_GENERATING') {
-    sendResponse({ ok: true, generating: isGenerating() });
+    const genState = checkGenerationState();
+    sendResponse({ 
+      ok: true, 
+      generating: genState.generating,
+      failed: genState.failed,
+      errorReason: genState.errorReason
+    });
     return;
   }
 
@@ -182,18 +188,22 @@ function clickSendButton(btn) {
 }
 
 function isGenerating() {
+  return checkGenerationState().generating;
+}
+
+function checkGenerationState() {
   const composer = document.querySelector('form, [data-testid="composer-background"]');
-  if (!composer) return false;
+  if (!composer) return { generating: false, failed: false };
 
   const editor = findPromptEditor();
   if (!editor) {
     // If composer exists but no editor is found inside, assume transition/loading state
-    return true;
+    return { generating: true, failed: false };
   }
 
   // 0. Check if the message input textarea is disabled (Universal indicator of generation/busy state)
   if (editor.disabled || editor.hasAttribute('disabled')) {
-    return true;
+    return { generating: true, failed: false };
   }
 
   // 1. Check if the stop button explicitly exists inside the composer
@@ -207,7 +217,7 @@ function isGenerating() {
   ];
   for (const selector of stopIndicators) {
     const found = composer.querySelector(selector);
-    if (found) return true;
+    if (found) return { generating: true, failed: false };
   }
 
   // 1.5. Scoped check for stop buttons containing square rects inside the composer
@@ -219,12 +229,12 @@ function isGenerating() {
       const h = parseFloat(rect.getAttribute('height') || '0');
       // A stop button icon is a solid square (e.g. 10x10, 12x12, 16x16)
       if (w >= 6 && w <= 24 && Math.abs(w - h) < 2) {
-        return true;
+        return { generating: true, failed: false };
       }
     }
     const svg = btn.querySelector('svg');
     if (svg && svg.getAttribute('class')?.includes('stop')) {
-      return true;
+      return { generating: true, failed: false };
     }
   }
 
@@ -233,7 +243,7 @@ function isGenerating() {
   if (editorText !== '') {
     const sendBtn = findSendButton();
     if (!sendBtn || sendBtn.disabled) {
-      return true;
+      return { generating: true, failed: false };
     }
   }
 
@@ -243,13 +253,33 @@ function isGenerating() {
     '[class*="result-streaming"]'
   ];
   for (const selector of streamingIndicators) {
-    if (document.querySelector(selector)) return true;
+    if (document.querySelector(selector)) return { generating: true, failed: false };
   }
 
   // 4. Check for DALL-E / Image Generation loading states inside the latest assistant response
   const assistantMessages = document.querySelectorAll('[data-message-author-role="assistant"], .agent-turn');
   if (assistantMessages.length > 0) {
     const lastMsg = assistantMessages[assistantMessages.length - 1];
+    
+    // Check for explicit ChatGPT error messages indicating image generation failure
+    const text = lastMsg.textContent;
+    const hasError = text.includes('오류로 인해 이미지를 생성하지 못했습니다') ||
+                     text.includes('오류가 발생했습니다') ||
+                     text.includes('이미지를 생성할 수 없습니다') ||
+                     text.includes('could not generate') ||
+                     text.includes('unable to generate') ||
+                     text.includes('encountered an error') ||
+                     text.includes('Something went wrong') ||
+                     lastMsg.querySelector('.text-red-500') ||
+                     lastMsg.querySelector('[class*="error-message"]');
+                     
+    if (hasError) {
+      return { 
+        generating: false, 
+        failed: true, 
+        errorReason: 'ChatGPT에서 이미지 생성 오류가 발생했습니다. (DALL-E Generation Failed)' 
+      };
+    }
     
     // Check if DALL-E was invoked or image block is present
     const hasDalle = lastMsg.textContent.includes('DALL·E') || 
@@ -268,7 +298,7 @@ function isGenerating() {
         lastMsg.querySelector('[aria-busy="true"]')
       );
       if (hasLoader) {
-        return true;
+        return { generating: true, failed: false };
       }
 
       // Check if there are any image elements inside the message block
@@ -283,7 +313,7 @@ function isGenerating() {
             foundLargeImg = true;
             // If the generated image is not yet fully loaded or has a width of 0, it is still rendering
             if (!img.complete || img.naturalWidth === 0) {
-              return true;
+              return { generating: true, failed: false };
             }
           }
         }
@@ -292,12 +322,12 @@ function isGenerating() {
       // If DALL-E was triggered but we haven't found any large generated images yet,
       // it means it's still in the early generation or placeholder phase.
       if (!foundLargeImg) {
-        return true;
+        return { generating: true, failed: false };
       }
     }
   }
 
-  return false;
+  return { generating: false, failed: false };
 }
 
 function isVisible(element) {
