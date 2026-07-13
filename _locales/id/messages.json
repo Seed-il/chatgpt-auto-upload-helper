@@ -89,6 +89,12 @@
   "timeoutOption5": {
     "message": "5 Menit"
   },
+  "timeoutOption7": {
+    "message": "7 Menit"
+  },
+  "timeoutOption10": {
+    "message": "10 Menit"
+  },
   "proFeatureAlert": {
     "message": "Opsi ini hanya tersedia untuk pengguna lisensi PRO."
   },

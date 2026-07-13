@@ -89,6 +89,12 @@
   "timeoutOption5": {
     "message": "5분"
   },
+  "timeoutOption7": {
+    "message": "7분"
+  },
+  "timeoutOption10": {
+    "message": "10분"
+  },
   "proFeatureAlert": {
     "message": "이 옵션은 PRO 라이선스 사용자만 이용할 수 있습니다."
   },

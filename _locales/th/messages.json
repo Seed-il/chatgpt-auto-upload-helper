@@ -89,6 +89,12 @@
   "timeoutOption5": {
     "message": "5 นาที"
   },
+  "timeoutOption7": {
+    "message": "7 นาที"
+  },
+  "timeoutOption10": {
+    "message": "10 นาที"
+  },
   "proFeatureAlert": {
     "message": "ตัวเลือกนี้ใช้ได้เฉพาะผู้ใช้ใบอนุญาต PRO เท่านั้น"
   },

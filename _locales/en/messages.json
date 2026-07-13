@@ -89,6 +89,12 @@
   "timeoutOption5": {
     "message": "5 Minutes"
   },
+  "timeoutOption7": {
+    "message": "7 Minutes"
+  },
+  "timeoutOption10": {
+    "message": "10 Minutes"
+  },
   "proFeatureAlert": {
     "message": "This option is only available for PRO license users."
   },

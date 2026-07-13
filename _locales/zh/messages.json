@@ -89,6 +89,12 @@
   "timeoutOption5": {
     "message": "5分钟"
   },
+  "timeoutOption7": {
+    "message": "7分钟"
+  },
+  "timeoutOption10": {
+    "message": "10分钟"
+  },
   "proFeatureAlert": {
     "message": "此选项仅限 PRO 授权用户使用。"
   },

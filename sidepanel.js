@@ -896,6 +896,8 @@ function updateUserProfileUI() {
   const timeoutProLock = $('#timeoutProLock');
   const timeoutOption3 = uploadTimeout.querySelector('option[value="180"]');
   const timeoutOption5 = uploadTimeout.querySelector('option[value="300"]');
+  const timeoutOption7 = uploadTimeout.querySelector('option[value="420"]');
+  const timeoutOption10 = uploadTimeout.querySelector('option[value="600"]');
 
   if (state.user) {
     userProfile.textContent = `${state.user.name} (${state.user.email})`;
@@ -908,6 +910,8 @@ function updateUserProfileUI() {
       if (timeoutProLock) timeoutProLock.style.display = 'none';
       if (timeoutOption3) timeoutOption3.disabled = false;
       if (timeoutOption5) timeoutOption5.disabled = false;
+      if (timeoutOption7) timeoutOption7.disabled = false;
+      if (timeoutOption10) timeoutOption10.disabled = false;
     } else {
       proBadge.style.display = 'none';
       upgradeBtn.style.display = 'inline-block';
@@ -915,9 +919,11 @@ function updateUserProfileUI() {
       if (timeoutProLock) timeoutProLock.style.display = 'inline-block';
       if (timeoutOption3) timeoutOption3.disabled = true;
       if (timeoutOption5) timeoutOption5.disabled = true;
+      if (timeoutOption7) timeoutOption7.disabled = true;
+      if (timeoutOption10) timeoutOption10.disabled = true;
 
       // Revert if Pro option selected while not Pro
-      if (uploadTimeout.value === '180' || uploadTimeout.value === '300') {
+      if (['180', '300', '420', '600'].includes(uploadTimeout.value)) {
         uploadTimeout.value = '60';
         state.settings.uploadTimeout = 60;
         chrome.storage.local.set({ settings: state.settings });
