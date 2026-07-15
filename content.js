@@ -26,12 +26,14 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
                     
                     // Poll for textarea clearing (confirming it was actually sent)
                     let pollCount = 0;
+                    const timeoutSec = message.timeout || 60;
+                    const maxPolls = timeoutSec * 20; // 20 polls per second (50ms interval)
                     const checkSent = () => {
                       const text = getEditorText(editor).trim();
                       if (text === '') {
                         sendResponse({ ok: true });
-                      } else if (pollCount > 100) { // 5 seconds timeout
-                        sendResponse({ ok: false, error: '프롬프트 전송에 실패했습니다. 입력창이 비워지지 않았습니다.' });
+                      } else if (pollCount > maxPolls) {
+                        sendResponse({ ok: false, error: `프롬프트 전송에 실패했습니다. 이미지 업로드 및 전송 대기 시간이 초과되었습니다 (${timeoutSec}초).` });
                       } else {
                         pollCount++;
                         setTimeout(checkSent, 50);
